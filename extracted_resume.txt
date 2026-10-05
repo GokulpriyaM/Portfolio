@@ -1,0 +1,62 @@
+GOKULPRIYA MARUTHACHALAM
+Senior Business Analyst | Product & Project Delivery | Requirements Engineering | Agile 
+gokulpriya1996@gmail.com  |  9566886585  | www.linkedin.com/in/gokulpriya-m-589864125|  Coimbatore, India  |  Remote & On-site  |  Notice: 30 Days
+PROFESSIONAL SUMMARY
+Senior Business Analyst with 6+ years of experience across business analysis, product and project delivery, requirements engineering, and Agile environments. Experienced in translating business needs into user stories, functional requirements, process flows, and UAT scenarios while coordinating with cross-functional teams. Experience across SaaS, Industrial IoT, Manufacturing, Education Technology, Project Management, Healthcare, and e-commerce products. Currently working on IOT3Sixty across MES, WMS, QMS, and AMM modules, with earlier experience in HR management and QA. 
+CORE SKILLS
+Business Analysis: Requirements Elicitation | BRD | FRD | SRS | User Stories | Acceptance Criteria | Use Cases | Functional Specifications | Business Rules | RTM
+Product & Project Delivery: Product Requirements | Backlog Management | Requirement Prioritization | Sprint Planning | Release Planning | Project Coordination | Stakeholder Management | UAT | Go-Live
+Process & Agile: Agile | Scrum | SDLC | AS-IS / TO-BE | Process Mapping | GAP Analysis | Fit-Gap Analysis | BPMN | UML | Wireframing | Process Improvement
+Technology & Tools: Industrial IoT | MES | WMS | QMS | AMM | SaaS | JIRA | Confluence | SQL | Postman | Selenium | Salesforce
+PROFESSIONAL EXPERIENCE
+Senior Business Analyst   |   Aagnia Technologies   |   May 2023 – Present
+Business Analysis & Requirements: Conducted 50+ stakeholder workshops and translated business needs into user stories, acceptance criteria, functional requirements, process flows, and RTM; reduced requirement clarification cycles by 35% and enabled teams to start sprints 2–3 days earlier.
+Product & Project Delivery: Coordinated with clients, product owners, developers, QA, and end users across concurrent projects to define requirements, manage scope, prioritize work, and support delivery.
+Process & Governance: Designed an ISO 9001-aligned 11-phase project governance framework with 15+ standardized templates; led a 20-member cross-functional team and reduced rework by 40%.
+Agile & Backlog Management: Managed 200+ backlog items across 3 teams and facilitated sprint planning, daily stand-ups, backlog refinement, sprint reviews, and retrospectives.
+UAT & Release Management: Coordinated UAT and go-live activities across 4+ production releases, achieving 95% defect detection, zero critical production incidents, and 98% user adoption by Go-Live +7; provided 30-day hypercare support. 
+HR Manager | LP Career Solution | Mar 2019 – Sep 2020
+Managed candidate support throughout the immigration service lifecycle, from initial job application through visa acceptance.
+Coordinated with candidates, recruiters, employers, and stakeholders to track requirements, application progress, documentation, and follow-ups.
+Prepared and maintained visa-related documentation and candidate records while resolving issues and ensuring timely completion of application activities.
+Quality Controller  |   Personiv Pvt Ltd   |Dec 2017   – Feb 2019
+Validated 100+ daily records for YellowPages.com (Salesforce backend) at 99.5% accuracy. Led 8-member QC team: +20% productivity, −15% rework, +10% client satisfaction. Awarded Best Performer for quality and delivery excellence.
+Testing Support   |  Koni Ameri Tech Pvt Ltd  | Mar 2017  - Dec 2017
+Conducted functional and integration testing for Medaz healthcare desktop/web applications - drug/pharmacy database validation, client invoicing, NIST testing - foundational to current ERP UAT delivery approach.
+Medical billing software testing , Medical code structure and format definition 
+KEY PRODUCT
+IOT3Sixty – Industrial IoT Platform  (Active)
+Domain: MES · WMS · QMS · AMM (Manufacturing Execution · Warehouse · Quality · Asset Management)   Role: Business Analyst, Implementation support
+Delivering requirements analysis, process flows, user stories, and functional specifications across MES, WMS, QMS, and AMM modules. Conducting stakeholder workshops to define functional requirements and system integration touchpoints for industrial IoT platforms.
+Work3Sixty – Project Management Platform (Product)Domain: Project Management · HR Management · SaaS | Role: Business Analyst  Period : 1 year
+Worked with the development team to define requirements for a configurable platform covering HR, project, client, task, timesheet, reporting, and performance management.
+Defined workflows for employee profiles, leave, attendance, sprints, tasks, assignees, timesheets, client management, and KPI calculations.
+Impact: Supported development of a centralized platform for employee, project, client, and performance management.
+ERP3Sixty -Manufacturing Business Management Platform Domain: Manufacturing · Customer Management · Vendor Management · Finance (ERPNEXT)- custom version | Role: Business Analyst
+Worked on a business management product covering manufacturing operations, customer management, vendor management, and finance reporting; gathered and documented functional requirements, business workflows, reporting requirements, and user stories across business functions.
+Supported cross-functional discussions to define workflows and align business requirements with product functionality.
+Domain: Supply Chain · Order Management · Delivery Management | Role: Business Analyst
+Worked on a configurable supply chain product supporting the customer order-to-dispatch lifecycle, with customizable product and business fields based on customer requirements.
+Defined requirements and workflows for customer orders, order processing, delivery planning, dispatch coordination, and status tracking, covering the post-order process from order confirmation-> delivery planning -> dispatch -> delivery tracking.
+Supported requirements analysis, user stories, process flows, and stakeholder discussions for customer-specific configurable workflows.
+KEY PROJECTS
+ERPNext Manufacturing ERP Implementation 
+Domain: Manufacturing · Inventory · Finance · Sales · Purchase   Role: Business Analyst & ERP Implementation Lead Period: 3 months
+Led requirements elicitation with 15+ stakeholders, Fit-Gap Analysis (20 config, 8 custom items), BRD/FRD with 25+ user stories and Maintained end-to-end requirement traceability using RTM , UAT with 95% defect detection, zero critical go-live issues.
+Impact:  40% reduction in manual data entry  ·  Inventory accuracy 87%→98%  ·  Order processing 25% faster (3 days→2.25 days)
+Microsoft Dynamics 365 Business Central – Finance & Project Accounting 
+Domain: Finance ,Project Accounting , Approval Workflow Automation   Role: Business Analyst / ERP Functional Consultant Period: 5 months
+8 workshops with 12 finance stakeholders; designed invoice approval automation (5 steps→2); functional configuration specs; full financial UAT.
+Impact:  Finance approval cycle −30% (5 days→3.5)  ·  Invoice accuracy improved via automation  ·  90% user adoption in 2 weeks
+Vehicle Management System – ANPR/RFID Integration  
+Domain: Fleet Logistics , Real-time Vehicle Tracking , IoT Integration   Role: Business Analyst Period : 3 months
+12 user stories with specs, 2+ stakeholders across 3 locations, designed use cases and process flows, managed field UAT.
+Impact:  90% reduction in manual fleet tracking  ·  Zero-incident go-live
+Everest Tutoring Platform – SaaS EdTech LMS  (Australia)
+Domain: Education Technology · SaaS · Learning Management System   Role: Business Analyst Period : 2 years
+Developed 150 user stories with acceptance criteria from 3 educator groups covering Question Bank, Booklet Management, Tutor Management, and CRM; prepared BRDs, wireframes, lesson-planning workflows, and coordinated UAT.
+Impact: 500+ educators onboarded · 4.8/5 user satisfaction · 10 hours/week saved per instructor through Google Sheets integration.
+EDUCATION & CERTIFICATIONS
+B.E. – Electronics & Communication Engineering   |   Sri Ramakrishna Institute of Technology   |   2013–2017   |   CGPA: 7.1
+Automation Testing with Selenium Java  - Qtree Technologies (Selenium, Java, TestNG, Jenkins, Test Case Design, Agile & SDLC)  ·  Scrum & Agile Methodology  ·  Quality Assurance Best Practices
+Award:  Best Performer - Personiv Pvt Ltd (quality, dedication, and client delivery)
