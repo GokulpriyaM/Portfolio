@@ -30,15 +30,16 @@ export default function App() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#0d1117] text-[#f0f6fc] selection:bg-[#8957e5] selection:text-white font-sans">
+    <div className="relative min-h-screen text-[#f0f6fc] selection:bg-[#8957e5] selection:text-white font-sans bg-[#0d1117]/30">
       {/* WebGL2 Ribbon Glow Background */}
       <RibbonGlow
-        background="#0d1117"
-        color1="#8957e5"
-        color2="#2f81f7"
-        speed={45}
-        size={110}
+        background="#090d14"
+        color1="#7000ff"
+        color2="#0070f3"
+        speed={25}
+        size={95}
         angle={-180}
+        reach={250}
       />
 
       {/* GitHub Header Navbar */}

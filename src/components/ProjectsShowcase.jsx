@@ -98,7 +98,7 @@ export default function ProjectsShowcase() {
   ];
 
   return (
-    <section id="projects" className="py-24 relative overflow-hidden bg-[#0d1117]">
+    <section id="projects" className="py-24 relative overflow-hidden bg-transparent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}

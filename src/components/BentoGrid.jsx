@@ -27,7 +27,7 @@ export default function BentoGrid() {
   const heatmapTiles = generateHeatmap();
 
   return (
-    <section className="py-20 relative overflow-hidden bg-[#0d1117]">
+    <section className="py-20 relative overflow-hidden bg-transparent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}

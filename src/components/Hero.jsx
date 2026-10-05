@@ -95,7 +95,7 @@ public void verifyUATOrderToDispatchLifecycle() {
   };
 
   return (
-    <section id="about" className="relative pt-28 pb-20 overflow-hidden min-h-screen flex items-center bg-[#0d1117]">
+    <section id="about" className="relative pt-28 pb-20 overflow-hidden min-h-screen flex items-center bg-transparent">
       
       {/* GitHub Glowing Background Orbs */}
       <div className="gh-glow-purple -top-20 -left-40 animate-pulse" />

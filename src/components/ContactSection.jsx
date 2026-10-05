@@ -45,7 +45,7 @@ export default function ContactSection({ onOpenResume }) {
   };
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden bg-[#010409] border-t border-[#30363d]">
+    <section id="contact" className="py-24 relative overflow-hidden bg-transparent border-t border-[#30363d]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
