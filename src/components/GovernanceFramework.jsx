@@ -1,22 +1,20 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
-  FileCheck, 
-  Layers, 
-  Workflow, 
-  CheckCircle, 
+  GitPullRequest, 
   ShieldCheck, 
-  Users, 
+  CheckCircle2, 
   ArrowRight, 
-  Sparkles,
-  FileSpreadsheet,
-  Award
+  FileSpreadsheet, 
+  Award, 
+  Users, 
+  GitBranch 
 } from 'lucide-react';
 
 export default function GovernanceFramework() {
-  const [activePhase, setActivePhase] = useState(0);
+  const [activeStep, setActiveStep] = useState(0);
 
-  const phases = [
+  const steps = [
     { num: '01', title: 'Stakeholder Elicitation', desc: 'Conduct structured workshops (50+) to capture business goals, user personas, and constraints.' },
     { num: '02', title: 'AS-IS Process Mapping', desc: 'Map existing operational bottlenecks using BPMN 2.0 swimlane diagrams to pinpoint inefficiencies.' },
     { num: '03', title: 'Fit-Gap Analysis', desc: 'Evaluate standard out-of-the-box system features versus custom development requirements.' },
@@ -42,129 +40,102 @@ export default function GovernanceFramework() {
   ];
 
   return (
-    <section id="governance" className="py-24 relative overflow-hidden bg-slate-950/70">
-      {/* Background glow */}
-      <div className="glow-orb w-[500px] h-[500px] bg-indigo-600/20 top-20 left-10" />
-
-      <div className="container-custom relative z-10">
+    <section id="governance" className="py-24 relative overflow-hidden bg-[#010409] border-t border-[#30363d]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <span className="section-tag">Delivery Standardization</span>
-          <h2 className="section-title text-white">
-            ISO 9001-Aligned <span className="gradient-text-primary">11-Phase Governance</span>
+        <div className="text-center max-w-3xl mx-auto mb-14 space-y-2">
+          <span className="text-xs font-mono text-[#3fb950] font-bold uppercase tracking-widest">
+            GitHub Agile Governance Pipeline
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            ISO 9001-Aligned <span className="github-gradient-text">11-Phase Governance</span>
           </h2>
-          <p className="text-slate-400 text-base">
-            Engineered a standardized 11-phase project governance framework with 15+ templates that steered a 20-member team and reduced sprint rework by 40%.
+          <p className="text-[#8b949e] text-sm">
+            Standardized project governance framework with 15+ templates that steered a 20-member cross-functional team and reduced sprint rework by 40%.
           </p>
         </div>
 
-        {/* Top Summary Banner */}
-        <div className="glass-card p-6 mb-12 border-indigo-500/30 bg-gradient-to-r from-indigo-950/40 via-purple-950/40 to-slate-900/60">
-          <div className="grid md:grid-cols-4 gap-6 items-center">
-            <div className="flex items-center gap-3">
-              <div className="p-3 rounded-2xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
-                <ShieldCheck className="w-6 h-6" />
-              </div>
-              <div>
-                <div className="text-xl font-bold font-mono text-emerald-400">40% Rework Saved</div>
-                <div className="text-xs text-slate-400">Zero ambiguity in sprints</div>
-              </div>
+        {/* Governance Metrics Summary Banner */}
+        <div className="gh-card p-6 mb-12 bg-[#161b22] border-[#30363d]">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+            <div className="p-3 bg-[#010409] border border-[#30363d] rounded-lg">
+              <div className="text-2xl font-bold font-mono text-[#3fb950]">40%</div>
+              <div className="text-xs text-[#8b949e] mt-1 font-mono">Rework Saved</div>
             </div>
-
-            <div className="flex items-center gap-3">
-              <div className="p-3 rounded-2xl bg-indigo-500/20 text-indigo-400 border border-indigo-500/30">
-                <Users className="w-6 h-6" />
-              </div>
-              <div>
-                <div className="text-xl font-bold font-mono text-indigo-400">20 Team Members</div>
-                <div className="text-xs text-slate-400">Guided cross-functionally</div>
-              </div>
+            <div className="p-3 bg-[#010409] border border-[#30363d] rounded-lg">
+              <div className="text-2xl font-bold font-mono text-[#58a6ff]">20 Team</div>
+              <div className="text-xs text-[#8b949e] mt-1 font-mono">Members Led</div>
             </div>
-
-            <div className="flex items-center gap-3">
-              <div className="p-3 rounded-2xl bg-pink-500/20 text-pink-400 border border-pink-500/30">
-                <FileSpreadsheet className="w-6 h-6" />
-              </div>
-              <div>
-                <div className="text-xl font-bold font-mono text-pink-400">15+ BA Templates</div>
-                <div className="text-xs text-slate-400">ISO 9001 standardized</div>
-              </div>
+            <div className="p-3 bg-[#010409] border border-[#30363d] rounded-lg">
+              <div className="text-2xl font-bold font-mono text-[#a371f7]">15+ BA</div>
+              <div className="text-xs text-[#8b949e] mt-1 font-mono">Standard Templates</div>
             </div>
-
-            <div className="flex items-center gap-3">
-              <div className="p-3 rounded-2xl bg-amber-500/20 text-amber-400 border border-amber-500/30">
-                <Award className="w-6 h-6" />
-              </div>
-              <div>
-                <div className="text-xl font-bold font-mono text-amber-400">98% Adoption</div>
-                <div className="text-xs text-slate-400">By Go-Live +7 days</div>
-              </div>
+            <div className="p-3 bg-[#010409] border border-[#30363d] rounded-lg">
+              <div className="text-2xl font-bold font-mono text-[#f0883e]">98%</div>
+              <div className="text-xs text-[#8b949e] mt-1 font-mono">User Adoption Day 7</div>
             </div>
           </div>
         </div>
 
-        {/* 11-Phase Interactive Grid / Stepper */}
+        {/* Stepper Grid */}
         <div className="grid lg:grid-cols-12 gap-8 items-start">
           
-          {/* Phase Selector Column */}
-          <div className="lg:col-span-5 space-y-2 max-h-[520px] overflow-y-auto pr-2 custom-scrollbar">
-            {phases.map((p, idx) => (
+          {/* Stepper List */}
+          <div className="lg:col-span-5 space-y-2 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
+            {steps.map((s, idx) => (
               <button
-                key={p.num}
-                onClick={() => setActivePhase(idx)}
-                className={`w-full text-left p-3.5 rounded-xl border transition-all flex items-center justify-between gap-3 ${
-                  activePhase === idx
-                    ? 'bg-gradient-to-r from-indigo-600/30 to-purple-600/30 border-indigo-400 text-white shadow-md'
-                    : 'bg-white/5 hover:bg-white/10 border-white/10 text-slate-300'
+                key={s.num}
+                onClick={() => setActiveStep(idx)}
+                className={`w-full text-left p-3.5 rounded-lg border transition-all flex items-center justify-between font-mono ${
+                  activeStep === idx
+                    ? 'bg-[#161b22] border-[#58a6ff] text-white shadow-md'
+                    : 'bg-[#161b22]/40 hover:bg-[#161b22] border-[#30363d] text-[#8b949e]'
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  <span className={`text-xs font-mono font-bold px-2 py-1 rounded ${activePhase === idx ? 'bg-indigo-500 text-white' : 'bg-white/10 text-slate-400'}`}>
-                    {p.num}
+                  <span className={`text-xs px-2 py-0.5 rounded ${activeStep === idx ? 'bg-[#58a6ff] text-[#0d1117] font-bold' : 'bg-[#21262d] text-[#8b949e]'}`}>
+                    PHASE {s.num}
                   </span>
-                  <span className="text-sm font-bold">{p.title}</span>
+                  <span className="text-xs font-semibold text-white">{s.title}</span>
                 </div>
-                <ArrowRight className={`w-4 h-4 transition-transform ${activePhase === idx ? 'text-indigo-400 translate-x-1' : 'text-slate-500'}`} />
+                <ArrowRight className={`w-4 h-4 ${activeStep === idx ? 'text-[#58a6ff]' : 'text-[#8b949e]'}`} />
               </button>
             ))}
           </div>
 
-          {/* Active Phase Display Card */}
+          {/* Active Step Content Box */}
           <div className="lg:col-span-7">
             <motion.div
-              key={activePhase}
-              initial={{ opacity: 0, x: 20 }}
+              key={activeStep}
+              initial={{ opacity: 0, x: 15 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3 }}
-              className="glass-card p-8 border-indigo-500/40 relative"
+              className="gh-card p-8 border-[#58a6ff]/40 bg-[#161b22] relative"
             >
-              <div className="flex items-center justify-between mb-4 pb-4 border-b border-white/10">
-                <span className="text-xs font-mono text-indigo-400 font-bold uppercase tracking-wider">
-                  PHASE {phases[activePhase].num} OF 11
+              <div className="flex items-center justify-between border-b border-[#30363d] pb-4 mb-4">
+                <span className="text-xs font-mono text-[#58a6ff] font-bold uppercase">
+                  GOVERNANCE PIPELINE STAGE {steps[activeStep].num} / 11
                 </span>
-                <span className="px-3 py-1 rounded-full text-xs font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                  ISO 9001 COMPLIANT
+                <span className="text-[10px] font-mono px-2.5 py-0.5 rounded bg-[#0e4429] text-[#3fb950] border border-[#006d32]">
+                  ISO 9001 VERIFIED
                 </span>
               </div>
 
-              <h3 className="text-2xl font-extrabold text-white mb-3">
-                {phases[activePhase].title}
-              </h3>
-
-              <p className="text-sm text-slate-300 leading-relaxed font-light mb-6">
-                {phases[activePhase].desc}
+              <h3 className="text-2xl font-bold text-white mb-3">{steps[activeStep].title}</h3>
+              <p className="text-sm text-[#c9d1d9] leading-relaxed font-light mb-6">
+                {steps[activeStep].desc}
               </p>
 
-              {/* Standardized BA Templates Section */}
-              <div className="pt-4 border-t border-white/10">
-                <h4 className="text-xs font-bold text-slate-400 font-mono uppercase tracking-wider mb-3">
-                  Standardized BA Artifact Templates
+              {/* Standard Templates Checklist */}
+              <div className="pt-4 border-t border-[#30363d]">
+                <h4 className="text-xs font-mono font-bold text-[#8b949e] uppercase mb-3">
+                  ISO 9001 Standardized BA Artifact Templates
                 </h4>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-2 gap-2 text-xs font-mono text-[#c9d1d9]">
                   {templates.map((t, i) => (
-                    <div key={i} className="flex items-center gap-2 text-xs text-slate-300 bg-white/5 border border-white/10 p-2 rounded-lg">
-                      <CheckCircle className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
+                    <div key={i} className="flex items-center gap-2 bg-[#010409] border border-[#30363d] p-2 rounded">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#3fb950] shrink-0" />
                       <span className="truncate">{t}</span>
                     </div>
                   ))}

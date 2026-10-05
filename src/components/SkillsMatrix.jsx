@@ -1,26 +1,24 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  FileCode2, 
+  Code2, 
   Layers, 
   Workflow, 
   Wrench, 
   Building2, 
   CheckCircle2, 
-  Cpu, 
-  Database, 
-  Compass 
+  Tag 
 } from 'lucide-react';
 
 export default function SkillsMatrix() {
   const [activeTab, setActiveTab] = useState('ba');
 
   const categories = [
-    { id: 'ba', name: 'Business Analysis', icon: FileCode2, count: 10 },
-    { id: 'delivery', name: 'Product & Delivery', icon: Layers, count: 9 },
-    { id: 'agile', name: 'Process & Agile', icon: Workflow, count: 11 },
-    { id: 'tools', name: 'Tech & Tools', icon: Wrench, count: 12 },
-    { id: 'domains', name: 'Industry Domains', icon: Building2, count: 7 }
+    { id: 'ba', name: 'Business Analysis', count: 10 },
+    { id: 'delivery', name: 'Product & Delivery', count: 9 },
+    { id: 'agile', name: 'Process & Agile', count: 11 },
+    { id: 'tools', name: 'Tech & Tools', count: 12 },
+    { id: 'domains', name: 'Industry Domains', count: 7 }
   ];
 
   const skillData = {
@@ -67,41 +65,39 @@ export default function SkillsMatrix() {
   };
 
   return (
-    <section id="skills" className="py-24 relative overflow-hidden">
-      {/* Background Glow */}
-      <div className="glow-orb w-96 h-96 bg-purple-600/20 top-20 right-10" />
-
-      <div className="container-custom relative z-10">
+    <section id="skills" className="py-24 relative overflow-hidden bg-[#0d1117]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <span className="section-tag">Core Competencies</span>
-          <h2 className="section-title text-white">
-            Skills & <span className="gradient-text-secondary">Technical Proficiency</span>
+        <div className="text-center max-w-3xl mx-auto mb-14 space-y-2">
+          <span className="text-xs font-mono text-[#a371f7] font-bold uppercase tracking-widest">
+            GitHub Topics & Skills Matrix
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            Core <span className="github-purple-gradient">Capabilities & Tech Stack</span>
           </h2>
-          <p className="text-slate-400 text-base">
-            Comprehensive skill set refined across 6+ years of end-to-end software product delivery, Agile governance, and multi-domain engineering.
+          <p className="text-[#8b949e] text-sm">
+            Comprehensive skill set refined across 6+ years of end-to-end software product delivery and Agile governance.
           </p>
         </div>
 
-        {/* Category Filter Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
+        {/* Category Tabs */}
+        <div className="flex flex-wrap justify-center gap-2 mb-10">
           {categories.map((cat) => {
-            const IconComp = cat.icon;
             const isActive = activeTab === cat.id;
             return (
               <button
                 key={cat.id}
                 onClick={() => setActiveTab(cat.id)}
-                className={`flex items-center gap-2 px-5 py-3 rounded-xl font-medium text-sm transition-all duration-300 ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-mono font-semibold transition-all ${
                   isActive
-                    ? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg shadow-indigo-500/25 scale-105 border border-indigo-400/40'
-                    : 'bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10'
+                    ? 'bg-[#161b22] text-[#58a6ff] border border-[#58a6ff] shadow-md'
+                    : 'bg-[#161b22]/40 hover:bg-[#161b22] text-[#8b949e] border border-[#30363d]'
                 }`}
               >
-                <IconComp className={`w-4 h-4 ${isActive ? 'text-white' : 'text-indigo-400'}`} />
+                <Tag className="w-3.5 h-3.5 text-[#8957e5]" />
                 <span>{cat.name}</span>
-                <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full ${isActive ? 'bg-white/20 text-white' : 'bg-white/10 text-slate-400'}`}>
+                <span className={`px-1.5 py-0.2 rounded text-[10px] ${isActive ? 'bg-[#58a6ff]/20 text-[#58a6ff]' : 'bg-[#21262d] text-[#8b949e]'}`}>
                   {cat.count}
                 </span>
               </button>
@@ -109,7 +105,7 @@ export default function SkillsMatrix() {
           })}
         </div>
 
-        {/* Skills Grid */}
+        {/* Skill Cards Grid */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
@@ -117,36 +113,34 @@ export default function SkillsMatrix() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.3 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
           >
             {skillData[activeTab].map((skill, idx) => (
               <div
                 key={skill.name}
-                className="glass-card p-5 relative flex flex-col justify-between hover:border-indigo-500/40"
+                className="gh-card p-5 relative border-[#30363d] hover:border-[#58a6ff]"
               >
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-base font-bold text-white flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                      <span>{skill.name}</span>
-                    </h3>
-                    <span className="text-xs font-mono font-bold text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded border border-indigo-500/20">
-                      {skill.level}%
-                    </span>
-                  </div>
-
-                  {/* Level Progress Bar */}
-                  <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden mb-3">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: `${skill.level}%` }}
-                      transition={{ duration: 1, delay: idx * 0.05 }}
-                      className="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full"
-                    />
-                  </div>
-
-                  <p className="text-xs text-slate-300 leading-relaxed font-light">{skill.desc}</p>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-sm font-bold text-white font-mono flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-[#3fb950] shrink-0" />
+                    <span>{skill.name}</span>
+                  </h3>
+                  <span className="text-[11px] font-mono text-[#58a6ff] bg-[#21262d] px-2 py-0.5 rounded border border-[#30363d]">
+                    {skill.level}%
+                  </span>
                 </div>
+
+                {/* Progress bar */}
+                <div className="w-full bg-[#010409] h-1.5 rounded-full overflow-hidden mb-3 border border-[#30363d]">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={{ width: `${skill.level}%` }}
+                    transition={{ duration: 0.8, delay: idx * 0.05 }}
+                    className="h-full bg-gradient-to-r from-[#8957e5] via-[#58a6ff] to-[#3fb950] rounded-full"
+                  />
+                </div>
+
+                <p className="text-xs text-[#8b949e] font-light leading-relaxed">{skill.desc}</p>
               </div>
             ))}
           </motion.div>
