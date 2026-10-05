@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import BackgroundCanvas from './components/BackgroundCanvas';
+import RibbonGlow from './components/RibbonGlow';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import BentoGrid from './components/BentoGrid';
@@ -31,8 +31,15 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen bg-[#0d1117] text-[#f0f6fc] selection:bg-[#8957e5] selection:text-white font-sans">
-      {/* GitHub Constellation Canvas */}
-      <BackgroundCanvas />
+      {/* WebGL2 Ribbon Glow Background */}
+      <RibbonGlow
+        background="#0d1117"
+        color1="#8957e5"
+        color2="#2f81f7"
+        speed={45}
+        size={110}
+        angle={-180}
+      />
 
       {/* GitHub Header Navbar */}
       <Navbar onOpenResume={() => setResumeOpen(true)} />
