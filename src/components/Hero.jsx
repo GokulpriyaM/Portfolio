@@ -1,5 +1,4 @@
-import React, { useEffect, useRef } from 'react';
-import anime from 'animejs';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { 
   ArrowRight, 
@@ -11,26 +10,6 @@ import {
 import LiveGoogleDoc from './LiveGoogleDoc';
 
 export default function Hero({ onOpenResume }) {
-  const headlineRef = useRef(null);
-
-  useEffect(() => {
-    // Anime.js text reveal effect
-    if (headlineRef.current) {
-      headlineRef.current.innerHTML = headlineRef.current.textContent.replace(
-        /\S/g,
-        "<span class='letter inline-block'>$&</span>"
-      );
-
-      anime({
-        targets: '.letter',
-        translateY: [25, 0],
-        opacity: [0, 1],
-        easing: 'easeOutExpo',
-        duration: 800,
-        delay: (el, i) => 200 + i * 25
-      });
-    }
-  }, []);
 
   return (
     <section id="about" className="relative pt-28 pb-20 overflow-hidden min-h-screen flex items-center bg-transparent">
@@ -75,9 +54,14 @@ export default function Hero({ onOpenResume }) {
               </span>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
                 Build business value like GitHub builds{' '}
-                <span ref={headlineRef} className="github-gradient-text block">
+                <motion.span 
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="github-gradient-text block font-black"
+                >
                   Gokulpriya M.
-                </span>
+                </motion.span>
               </h1>
             </div>
 

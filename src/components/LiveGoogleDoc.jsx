@@ -2,585 +2,544 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   FileText, 
-  Share2, 
   Lock, 
   Cloud, 
   Check, 
   Star, 
-  FolderPlus, 
   RotateCcw, 
   RotateCw, 
   Printer, 
-  CheckCheck, 
   Bold, 
   Italic, 
   Underline, 
   Highlighter, 
-  AlignLeft, 
-  List, 
-  ListOrdered, 
-  CheckSquare, 
   MessageSquare, 
   Link2, 
-  Image as ImageIcon, 
   ChevronDown, 
-  Sparkles,
-  UserCheck,
-  Clock,
-  Eye,
   CheckCircle2,
-  ExternalLink
+  Sparkles,
+  ArrowRight,
+  ShieldCheck,
+  CheckSquare,
+  Workflow,
+  Cpu,
+  Zap,
+  Activity,
+  Layers,
+  FileCheck
 } from 'lucide-react';
 
 export default function LiveGoogleDoc() {
-  const [activeDocTab, setActiveDocTab] = useState('brd');
+  const [activeTab, setActiveTab] = useState('brd');
   const [commentResolved, setCommentResolved] = useState(false);
-  const [checklistState, setChecklistState] = useState({
+  const [checklist, setChecklist] = useState({
     item1: true,
     item2: true,
     item3: true,
     item4: false
   });
-  const [typingText, setTypingText] = useState('');
-  const [isTyping, setIsTyping] = useState(true);
+  const [liveTypeIndex, setLiveTypeIndex] = useState(0);
 
-  // Simulated live typing effect for real-time collaboration feel
+  const typingSentence = " • Telemetry verified against ISO 9001 Clause 8.2 & INVEST standard.";
+
   useEffect(() => {
-    const fullAddition = ' (Verified against ISO 9001 Clause 8.2.2 requirements)';
-    let currentIndex = 0;
-    setTypingText('');
-    setIsTyping(true);
-
-    const interval = setInterval(() => {
-      if (currentIndex <= fullAddition.length) {
-        setTypingText(fullAddition.slice(0, currentIndex));
-        currentIndex++;
-      } else {
-        clearInterval(interval);
-        setIsTyping(false);
-      }
-    }, 65);
-
-    return () => clearInterval(interval);
-  }, [activeDocTab]);
+    const timer = setInterval(() => {
+      setLiveTypeIndex(prev => (prev < typingSentence.length ? prev + 1 : prev));
+    }, 55);
+    return () => clearInterval(timer);
+  }, []);
 
   const toggleCheck = (key) => {
-    setChecklistState(prev => ({
-      ...prev,
-      [key]: !prev[key]
-    }));
+    setChecklist(prev => ({ ...prev, [key]: !prev[key] }));
   };
 
   return (
-    <div className="w-full rounded-xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.85)] border border-[#30363d] bg-[#161b22] text-[#c9d1d9] transition-all">
+    <div className="relative group w-full select-none">
       
-      {/* 1. Google Docs App Bar */}
-      <div className="bg-[#1e232b] px-3 sm:px-4 py-2 border-b border-[#30363d] flex flex-wrap items-center justify-between gap-2">
+      {/* Radiant Ambient Backlight Halo */}
+      <div className="absolute -inset-1.5 bg-gradient-to-r from-[#8957e5]/30 via-[#2f81f7]/25 to-[#3fb950]/20 rounded-2xl blur-xl opacity-70 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+      {/* Main Google Docs Window Shell */}
+      <div className="relative rounded-2xl overflow-hidden border border-[#30363d] bg-gradient-to-b from-[#161b22] via-[#0d1117] to-[#010409] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9),0_0_30px_rgba(47,129,247,0.15)] text-[#c9d1d9]">
         
-        {/* Left: Google Docs Logo & Document Info */}
-        <div className="flex items-center gap-2.5">
-          {/* Authentic Google Docs Blue Sheet Icon */}
-          <div className="w-8 h-8 rounded bg-[#1a73e8]/15 border border-[#1a73e8]/30 flex items-center justify-center shrink-0 shadow-sm" title="Google Docs">
-            <svg className="w-5 h-5 text-[#4285F4]" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
-            </svg>
-          </div>
-
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="text-white font-semibold text-xs sm:text-sm tracking-tight truncate max-w-[200px] sm:max-w-[320px]">
-                BRD_Shopfloor_MES_Telemetry_v2.4
-              </span>
-              <span className="hidden sm:inline-block px-1.5 py-0.5 rounded text-[10px] font-mono bg-[#238636]/20 text-[#3fb950] border border-[#238636]/30">
-                .docx
-              </span>
-              <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400 cursor-pointer hover:scale-110 transition-transform" />
-              <FolderPlus className="w-3.5 h-3.5 text-[#8b949e] cursor-pointer hover:text-white transition-colors" />
-            </div>
-
-            {/* Google Docs Menus */}
-            <div className="hidden sm:flex items-center gap-2.5 text-[11px] text-[#8b949e] font-sans mt-0.5">
-              <span className="hover:text-white cursor-pointer transition-colors">File</span>
-              <span className="hover:text-white cursor-pointer transition-colors">Edit</span>
-              <span className="hover:text-white cursor-pointer transition-colors">View</span>
-              <span className="hover:text-white cursor-pointer transition-colors">Insert</span>
-              <span className="hover:text-white cursor-pointer transition-colors">Format</span>
-              <span className="hover:text-white cursor-pointer transition-colors">Tools</span>
-              <span className="hover:text-white cursor-pointer transition-colors">Extensions</span>
-              <span className="hover:text-white cursor-pointer transition-colors">Help</span>
-              <span className="text-[#3fb950] flex items-center gap-1 ml-1 text-[10px]">
-                <Cloud className="w-3 h-3 text-[#3fb950]" />
-                Saved to Drive
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* Right: Live Collaborators & Share Button */}
-        <div className="flex items-center gap-2.5 shrink-0 ml-auto">
+        {/* 1. Google Docs App Bar */}
+        <div className="px-4 py-3 bg-[#161b22]/90 backdrop-blur-xl border-b border-[#30363d] flex items-center justify-between gap-3">
           
-          {/* Active Collaborators Stack */}
-          <div className="flex items-center -space-x-1.5" title="Live Collaborators">
-            {/* Gokulpriya (Owner) */}
-            <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-[#8957e5] to-[#a371f7] text-white flex items-center justify-center text-[10px] font-bold border-2 border-[#1e232b] shadow-sm relative group cursor-pointer">
-              GM
-              <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-[#3fb950] border border-[#1e232b] animate-ping" />
+          {/* Left: Google Docs Logo + Doc Title + Status */}
+          <div className="flex items-center gap-3 min-w-0">
+            {/* Google Docs Blue Sheet Icon with Subtle Glow */}
+            <div className="w-9 h-9 rounded-lg bg-[#1a73e8]/15 border border-[#1a73e8]/40 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(26,115,232,0.3)]">
+              <svg className="w-5 h-5 text-[#4285F4]" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+              </svg>
             </div>
-            {/* Srinivas (VP Tech) */}
-            <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-[#1f6feb] to-[#58a6ff] text-white flex items-center justify-center text-[10px] font-bold border-2 border-[#1e232b] shadow-sm cursor-pointer" title="Srinivas R. (VP Operations)">
-              SR
-            </div>
-            {/* Rahul (Architect) */}
-            <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-[#238636] to-[#3fb950] text-white flex items-center justify-center text-[10px] font-bold border-2 border-[#1e232b] shadow-sm cursor-pointer" title="Rahul K. (Lead Architect)">
-              RK
-            </div>
-            <div className="w-6 h-6 rounded-full bg-[#30363d] text-[#8b949e] flex items-center justify-center text-[9px] font-mono border-2 border-[#1e232b]">
-              +2
-            </div>
-          </div>
 
-          {/* Google Docs Blue Share Button */}
-          <button 
-            onClick={() => alert("Simulated Google Docs BRD: Verified by Gokulpriya M. for Industrial IoT & ISO 9001 delivery.")}
-            className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] text-white text-xs font-semibold shadow-sm transition-all hover:shadow-[0_0_12px_rgba(26,115,232,0.4)] active:scale-95"
-          >
-            <Lock className="w-3 h-3" />
-            <span>Share</span>
-          </button>
-        </div>
-
-      </div>
-
-      {/* 2. Google Docs Formatting Toolbar */}
-      <div className="bg-[#161b22] px-3 py-1.5 border-b border-[#30363d] flex items-center gap-1.5 overflow-x-auto text-[#8b949e] text-xs custom-scrollbar">
-        <button className="p-1 rounded hover:bg-[#21262d] hover:text-white transition-colors" title="Undo"><RotateCcw className="w-3.5 h-3.5" /></button>
-        <button className="p-1 rounded hover:bg-[#21262d] hover:text-white transition-colors" title="Redo"><RotateCw className="w-3.5 h-3.5" /></button>
-        <button className="p-1 rounded hover:bg-[#21262d] hover:text-white transition-colors" title="Print"><Printer className="w-3.5 h-3.5" /></button>
-        <button className="p-1 rounded hover:bg-[#21262d] hover:text-white transition-colors" title="Spell Check"><CheckCheck className="w-3.5 h-3.5" /></button>
-
-        <div className="h-4 w-px bg-[#30363d] mx-1" />
-
-        <div className="flex items-center gap-1 px-1.5 py-0.5 rounded bg-[#21262d] text-white text-[11px] font-mono cursor-pointer hover:bg-[#30363d]">
-          <span>100%</span>
-          <ChevronDown className="w-3 h-3 text-[#8b949e]" />
-        </div>
-
-        <div className="flex items-center gap-1 px-2 py-0.5 rounded bg-[#21262d] text-white text-[11px] font-medium cursor-pointer hover:bg-[#30363d] truncate">
-          <span>Heading 1</span>
-          <ChevronDown className="w-3 h-3 text-[#8b949e]" />
-        </div>
-
-        <div className="flex items-center gap-1 px-2 py-0.5 rounded bg-[#21262d] text-white text-[11px] font-medium cursor-pointer hover:bg-[#30363d]">
-          <span>Roboto</span>
-          <ChevronDown className="w-3 h-3 text-[#8b949e]" />
-        </div>
-
-        <div className="flex items-center gap-1 px-1.5 py-0.5 rounded bg-[#21262d] text-white text-[11px] font-mono">
-          <span>11</span>
-        </div>
-
-        <div className="h-4 w-px bg-[#30363d] mx-1" />
-
-        {/* Styling buttons */}
-        <button className="p-1 rounded font-bold hover:bg-[#21262d] text-white" title="Bold">B</button>
-        <button className="p-1 rounded italic hover:bg-[#21262d] hover:text-white" title="Italic">I</button>
-        <button className="p-1 rounded underline hover:bg-[#21262d] hover:text-white" title="Underline">U</button>
-        <button className="p-1 rounded hover:bg-[#21262d] text-[#58a6ff] font-bold" title="Text Color">A</button>
-        <button className="p-1 rounded hover:bg-[#21262d] text-yellow-400" title="Highlight"><Highlighter className="w-3.5 h-3.5" /></button>
-
-        <div className="h-4 w-px bg-[#30363d] mx-1" />
-
-        <button className="p-1 rounded hover:bg-[#21262d] text-[#58a6ff]" title="Insert Link"><Link2 className="w-3.5 h-3.5" /></button>
-        <button className="p-1 rounded hover:bg-[#21262d] text-amber-400" title="Add Comment"><MessageSquare className="w-3.5 h-3.5" /></button>
-        <button className="p-1 rounded hover:bg-[#21262d] hover:text-white" title="Align Left"><AlignLeft className="w-3.5 h-3.5" /></button>
-        <button className="p-1 rounded hover:bg-[#21262d] text-[#3fb950]" title="Checklist"><CheckSquare className="w-3.5 h-3.5" /></button>
-        <button className="p-1 rounded hover:bg-[#21262d] hover:text-white" title="Bulleted List"><List className="w-3.5 h-3.5" /></button>
-      </div>
-
-      {/* 3. Google Docs Horizontal Margin Ruler */}
-      <div className="bg-[#0d1117] px-4 py-1 border-b border-[#30363d] flex items-center justify-between text-[9px] font-mono text-[#6e7681] select-none">
-        <div className="flex items-center gap-6 sm:gap-10 pl-6 relative w-full">
-          {/* Blue Google Docs margin slider stop */}
-          <div className="absolute left-6 -top-1 text-[#1a73e8] cursor-ew-resize">▼</div>
-          <span>1</span>
-          <span>2</span>
-          <span>3</span>
-          <span>4</span>
-          <span>5</span>
-          <span>6</span>
-          <span>7</span>
-          <div className="absolute right-8 -top-1 text-[#1a73e8] cursor-ew-resize">▼</div>
-        </div>
-        <span className="text-[10px] text-[#8957e5] font-semibold shrink-0 hidden sm:inline-block">
-          ● Live Collab Mode
-        </span>
-      </div>
-
-      {/* 4. Switchable Document Deliverable Tabs */}
-      <div className="bg-[#12161f] px-3 pt-2 border-b border-[#30363d] flex items-center gap-1 overflow-x-auto text-xs custom-scrollbar">
-        {[
-          { id: 'brd', label: 'BRD: MES Telemetry', tag: 'BRD-204' },
-          { id: 'userstory', label: 'User Story & INVEST', tag: 'US-Shopfloor' },
-          { id: 'rtm', label: 'ISO 9001 Traceability', tag: 'RTM-Matrix' }
-        ].map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveDocTab(tab.id)}
-            className={`flex items-center gap-2 px-3 py-1.5 rounded-t-md text-xs font-medium transition-all ${
-              activeDocTab === tab.id
-                ? 'bg-[#ffffff] text-[#1f2937] font-semibold shadow-sm border-t-2 border-[#1a73e8]'
-                : 'text-[#8b949e] hover:text-white hover:bg-[#161b22]'
-            }`}
-          >
-            <FileText className={`w-3.5 h-3.5 ${activeDocTab === tab.id ? 'text-[#1a73e8]' : 'text-[#8b949e]'}`} />
-            <span>{tab.label}</span>
-            <span className={`text-[10px] px-1 rounded font-mono ${
-              activeDocTab === tab.id ? 'bg-[#e8f0fe] text-[#1a73e8]' : 'bg-[#21262d] text-[#8b949e]'
-            }`}>
-              {tab.tag}
-            </span>
-          </button>
-        ))}
-      </div>
-
-      {/* 5. Google Docs White Paper Sheet Canvas */}
-      <div className="p-3 sm:p-5 bg-[#090d13]/70 overflow-y-auto max-h-[460px] custom-scrollbar flex justify-center">
-        
-        {/* Document Sheet (Realistic Google Docs Paper Look) */}
-        <div className="w-full bg-[#ffffff] text-[#1f2937] p-5 sm:p-6 rounded-sm shadow-xl font-sans text-xs leading-relaxed border border-gray-200 relative">
-          
-          {/* Real-time Collaborator Floating Tag */}
-          <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-[#8957e5]/10 border border-[#8957e5]/30 px-2 py-0.5 rounded-full text-[10px] font-medium text-[#7932e6] shadow-sm select-none">
-            <span className="w-2 h-2 rounded-full bg-[#8957e5] animate-pulse" />
-            <span>Gokulpriya M. is editing live</span>
-          </div>
-
-          {/* Document Content Tab 1: BRD Telemetry */}
-          {activeDocTab === 'brd' && (
-            <div className="space-y-4">
-              
-              {/* Document Header Table */}
-              <div className="border border-gray-300 rounded p-2.5 bg-gray-50/80 text-[11px] font-mono grid grid-cols-2 sm:grid-cols-4 gap-2 text-gray-700">
-                <div>
-                  <span className="text-gray-400 block text-[9px] uppercase font-bold">Document Type</span>
-                  <span className="font-semibold text-blue-700">BRD / FSD Suite</span>
-                </div>
-                <div>
-                  <span className="text-gray-400 block text-[9px] uppercase font-bold">Document ID</span>
-                  <span className="font-semibold text-gray-900">BRD-MES-204</span>
-                </div>
-                <div>
-                  <span className="text-gray-400 block text-[9px] uppercase font-bold">Approval Status</span>
-                  <span className="inline-flex items-center gap-1 font-semibold text-emerald-700">
-                    <CheckCircle2 className="w-3 h-3 text-emerald-600" />
-                    APPROVED
-                  </span>
-                </div>
-                <div>
-                  <span className="text-gray-400 block text-[9px] uppercase font-bold">Lead Analyst</span>
-                  <span className="font-semibold text-purple-800">Gokulpriya M.</span>
-                </div>
-              </div>
-
-              {/* Title */}
-              <div>
-                <h2 className="text-base sm:text-lg font-bold text-gray-900 tracking-tight flex items-center gap-2">
-                  <span>1.0 Shopfloor MES Telemetry Integration</span>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-purple-100 text-purple-800 border border-purple-200">
-                    IoT 3Sixty™ Suite
-                  </span>
-                </h2>
-                <p className="text-gray-600 text-[11px] mt-1">
-                  Bridging machine-level PLC cycle time variances directly to Quality Management (QMS) and Asset Maintenance (AMM).
-                </p>
-              </div>
-
-              {/* Business Problem & Value Statement */}
-              <div className="p-3 bg-blue-50/60 border-l-4 border-[#1a73e8] rounded-r text-gray-800">
-                <span className="font-bold text-blue-900 block text-[11px] mb-1">
-                  Business Objective & ROI Metric:
+            <div className="min-w-0">
+              <div className="flex items-center gap-2">
+                <span className="text-white font-bold text-sm tracking-tight truncate max-w-[180px] sm:max-w-[280px]">
+                  PRD: Shopfloor MES & Telemetry
                 </span>
-                <p className="text-[11.5px] leading-relaxed">
-                  Eliminate 40% downstream rework and manual logging delays by capturing IoT machine cycle times at 500ms intervals, auto-triggering preventive maintenance work orders in AMM upon anomalous drift (&gt;15%).
-                </p>
+                <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-medium bg-[#238636]/20 text-[#3fb950] border border-[#238636]/30 shrink-0">
+                  v2.4 Approved
+                </span>
+                <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400 shrink-0 cursor-pointer hover:scale-110 transition-transform" />
               </div>
 
-              {/* Functional Requirements with Highlighted Text & Attached Comment */}
-              <div>
-                <h3 className="font-bold text-gray-900 text-xs uppercase tracking-wider mb-2">
-                  2.0 Core Functional Specifications
-                </h3>
+              {/* Status & Menus Row */}
+              <div className="flex items-center gap-2 text-[11px] text-[#8b949e] font-sans mt-0.5">
+                <span className="text-[#3fb950] flex items-center gap-1 font-medium">
+                  <Cloud className="w-3 h-3 text-[#3fb950]" />
+                  Saved to Drive
+                </span>
+                <span className="text-[#484f58]">•</span>
+                <span className="hidden sm:inline hover:text-white cursor-pointer transition-colors">File</span>
+                <span className="hidden sm:inline hover:text-white cursor-pointer transition-colors">Edit</span>
+                <span className="hidden sm:inline hover:text-white cursor-pointer transition-colors">View</span>
+                <span className="hidden sm:inline hover:text-white cursor-pointer transition-colors">Insert</span>
+                <span className="hidden sm:inline hover:text-white cursor-pointer transition-colors">Format</span>
+                <span className="hidden sm:inline hover:text-white cursor-pointer transition-colors">Tools</span>
+              </div>
+            </div>
+          </div>
 
-                <div className="space-y-2 text-[11.5px]">
-                  <div className="p-2 bg-gray-50 border border-gray-200 rounded">
-                    <strong className="text-gray-900">FR-01: Anomaly Ingestion: </strong>
-                    <span>Edge IoT gateway polls Modbus/OPC-UA tags. If cycle variance exceeds 15% threshold for 3 consecutive strokes, flag as Priority-1 non-conformance.</span>
+          {/* Right: Collaborators & Google Docs Share CTA */}
+          <div className="flex items-center gap-3 shrink-0">
+            {/* Active Collaborators Presence */}
+            <div className="hidden sm:flex items-center -space-x-2" title="Active Collaborators">
+              {/* Gokulpriya (Owner) */}
+              <div className="relative">
+                <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-[#8957e5] to-[#d2a8ff] text-white flex items-center justify-center text-[10px] font-bold border-2 border-[#161b22] shadow-md">
+                  GM
+                </div>
+                <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-[#3fb950] border-2 border-[#161b22]" />
+              </div>
+
+              {/* VP Operations */}
+              <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-[#1f6feb] to-[#58a6ff] text-white flex items-center justify-center text-[10px] font-bold border-2 border-[#161b22] shadow-md" title="Srinivas R. (VP Operations)">
+                SR
+              </div>
+
+              {/* Lead Architect */}
+              <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-[#238636] to-[#3fb950] text-white flex items-center justify-center text-[10px] font-bold border-2 border-[#161b22] shadow-md" title="Rahul K. (Lead Architect)">
+                RK
+              </div>
+            </div>
+
+            {/* Google Docs Signature Blue Share Button */}
+            <button className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] text-white text-xs font-semibold shadow-[0_0_15px_rgba(26,115,232,0.4)] transition-all hover:scale-105 active:scale-95">
+              <Lock className="w-3.5 h-3.5" />
+              <span>Share</span>
+            </button>
+          </div>
+
+        </div>
+
+        {/* 2. Streamlined Modern Formatting Ribbon */}
+        <div className="px-3 py-1.5 bg-[#12161f] border-b border-[#30363d] flex items-center justify-between gap-2 text-xs text-[#8b949e]">
+          
+          <div className="flex items-center gap-1 overflow-x-auto custom-scrollbar py-0.5">
+            <button className="p-1 rounded hover:bg-[#21262d] hover:text-white transition-colors" title="Undo"><RotateCcw className="w-3.5 h-3.5" /></button>
+            <button className="p-1 rounded hover:bg-[#21262d] hover:text-white transition-colors" title="Redo"><RotateCw className="w-3.5 h-3.5" /></button>
+            <button className="p-1 rounded hover:bg-[#21262d] hover:text-white transition-colors" title="Print"><Printer className="w-3.5 h-3.5" /></button>
+
+            <div className="h-3.5 w-px bg-[#30363d] mx-1" />
+
+            <div className="flex items-center gap-1 px-2 py-0.5 rounded bg-[#21262d] text-white text-[11px] font-medium border border-[#30363d]">
+              <span>Heading 1</span>
+              <ChevronDown className="w-3 h-3 text-[#8b949e]" />
+            </div>
+
+            <div className="flex items-center gap-1 px-2 py-0.5 rounded bg-[#21262d] text-white text-[11px] font-mono border border-[#30363d]">
+              <span>Roboto</span>
+              <ChevronDown className="w-3 h-3 text-[#8b949e]" />
+            </div>
+
+            <div className="h-3.5 w-px bg-[#30363d] mx-1" />
+
+            <button className="p-1 px-1.5 rounded hover:bg-[#21262d] text-white font-bold" title="Bold">B</button>
+            <button className="p-1 px-1.5 rounded hover:bg-[#21262d] hover:text-white italic font-serif" title="Italic">I</button>
+            <button className="p-1 px-1.5 rounded hover:bg-[#21262d] hover:text-white underline" title="Underline">U</button>
+            <button className="p-1 rounded hover:bg-[#21262d] text-[#58a6ff]" title="Text Color"><Highlighter className="w-3.5 h-3.5" /></button>
+            <button className="p-1 rounded hover:bg-[#21262d] text-amber-400" title="Comment"><MessageSquare className="w-3.5 h-3.5" /></button>
+          </div>
+
+          {/* Real-time Collaboration Live Badge */}
+          <div className="hidden sm:flex items-center gap-1.5 text-[11px] font-mono text-[#a371f7] bg-[#a371f7]/10 px-2.5 py-0.5 rounded-full border border-[#a371f7]/20 shrink-0">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#a371f7] animate-ping" />
+            <span>Gokulpriya M. (Lead BA) Live</span>
+          </div>
+
+        </div>
+
+        {/* 3. Segmented Deliverable Switcher (Sleek Pills) */}
+        <div className="px-4 py-2 bg-[#0d1117] border-b border-[#30363d] flex items-center gap-2 overflow-x-auto custom-scrollbar">
+          {[
+            { id: 'brd', label: '1. BRD Specification', code: 'BRD-204', icon: FileText, color: '#58a6ff' },
+            { id: 'invest', label: '2. INVEST User Story', code: 'US-204', icon: Zap, color: '#a371f7' },
+            { id: 'rtm', label: '3. ISO 9001 Traceability', code: 'RTM Matrix', icon: ShieldCheck, color: '#3fb950' }
+          ].map((tab) => {
+            const Icon = tab.icon;
+            const isActive = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`relative flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all shrink-0 ${
+                  isActive
+                    ? 'text-white bg-[#21262d] border border-[#58a6ff]/40 shadow-sm'
+                    : 'text-[#8b949e] hover:text-[#c9d1d9] hover:bg-[#161b22]'
+                }`}
+              >
+                <Icon className="w-3.5 h-3.5" style={{ color: isActive ? tab.color : '#8b949e' }} />
+                <span>{tab.label}</span>
+                <span className={`text-[10px] font-mono px-1.5 py-0.2 rounded ${
+                  isActive ? 'bg-[#58a6ff]/20 text-[#58a6ff]' : 'bg-[#161b22] text-[#8b949e]'
+                }`}>
+                  {tab.code}
+                </span>
+                {isActive && (
+                  <motion.div
+                    layoutId="activeTabGlow"
+                    className="absolute inset-0 rounded-lg border-2 border-[#58a6ff]/40 pointer-events-none"
+                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                  />
+                )}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* 4. Document Canvas Sheet */}
+        <div className="p-4 sm:p-5 overflow-y-auto max-h-[460px] custom-scrollbar bg-[#0d1117]/60 space-y-4">
+          
+          {/* TAB 1: BRD SPECIFICATION */}
+          {activeTab === 'brd' && (
+            <motion.div 
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2 }}
+              className="space-y-4"
+            >
+              {/* Document Metadata Card */}
+              <div className="p-3.5 rounded-xl bg-[#161b22] border border-[#30363d] shadow-sm">
+                <div className="flex flex-wrap items-center justify-between gap-2 pb-2.5 border-b border-[#30363d]">
+                  <div>
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#8b949e] block font-semibold">
+                      Enterprise Product Deliverable
+                    </span>
+                    <h3 className="text-sm sm:text-base font-bold text-white tracking-tight flex items-center gap-2 mt-0.5">
+                      <span>Shopfloor MES Telemetry Integration</span>
+                      <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#8957e5]/20 text-[#d2a8ff] border border-[#8957e5]/30">
+                        IOT3Sixty™ Suite
+                      </span>
+                    </h3>
                   </div>
 
-                  {/* Highlighted text with Google Docs Comment Anchor */}
-                  <div className="p-2 bg-amber-50/60 border border-amber-300 rounded relative">
-                    <strong className="text-gray-900">FR-02: Automated AMM Trigger: </strong>
-                    <mark className="bg-yellow-200 text-gray-900 px-1 py-0.5 rounded cursor-pointer font-medium">
-                      Auto-trigger preventive maintenance work order in AMM
-                    </mark>
-                    <span> and dispatch instant alert to line supervisor via Work3Sixty instant notification queue.</span>
-                    <span className="text-purple-700 font-mono text-[10.5px]">
-                      {typingText}
+                  <div className="flex items-center gap-2 font-mono text-[11px]">
+                    <span className="px-2 py-0.5 rounded bg-[#238636]/20 text-[#3fb950] border border-[#238636]/30 flex items-center gap-1 font-semibold">
+                      <CheckCircle2 className="w-3.5 h-3.5" />
+                      ISO 9001 Compliant
                     </span>
-                    {isTyping && (
-                      <span className="inline-block w-1.5 h-3.5 bg-purple-600 ml-0.5 animate-pulse align-middle" />
-                    )}
                   </div>
                 </div>
+
+                {/* Metadata Grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2.5 text-[11px] font-mono text-[#8b949e]">
+                  <div>
+                    <span className="text-[#6e7681] block text-[9px] uppercase">Author / Lead BA</span>
+                    <span className="text-[#f0f6fc] font-semibold">Gokulpriya M.</span>
+                  </div>
+                  <div>
+                    <span className="text-[#6e7681] block text-[9px] uppercase">Target Scope</span>
+                    <span className="text-[#58a6ff]">MES · WMS · QMS · AMM</span>
+                  </div>
+                  <div>
+                    <span className="text-[#6e7681] block text-[9px] uppercase">Deployment</span>
+                    <span className="text-[#3fb950]">Sprint 14 Cutover</span>
+                  </div>
+                  <div>
+                    <span className="text-[#6e7681] block text-[9px] uppercase">Sign-off</span>
+                    <span className="text-[#a371f7]">VP Operations Approved</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Visual BA Architecture Pipeline */}
+              <div className="p-3 rounded-xl bg-gradient-to-r from-[#161b22] to-[#1a202c] border border-[#30363d]">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-xs font-bold text-white flex items-center gap-1.5 uppercase font-mono">
+                    <Workflow className="w-3.5 h-3.5 text-[#58a6ff]" />
+                    Architected Automated Anomaly Flow
+                  </span>
+                  <span className="text-[10px] font-mono text-[#3fb950] bg-[#238636]/15 px-2 py-0.5 rounded border border-[#238636]/25">
+                    &lt;1.2s Dispatch Latency
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-4 gap-2 text-center text-[11px] font-mono">
+                  <div className="p-2 rounded bg-[#0d1117] border border-[#30363d]">
+                    <span className="text-[9px] text-[#8b949e] block font-sans">Step 1</span>
+                    <span className="font-semibold text-[#58a6ff]">IoT Edge Ingestion</span>
+                    <span className="text-[10px] text-[#6e7681] block mt-0.5">500ms MQTT cycle poll</span>
+                  </div>
+                  <div className="p-2 rounded bg-[#0d1117] border border-[#30363d]">
+                    <span className="text-[9px] text-[#8b949e] block font-sans">Step 2</span>
+                    <span className="font-semibold text-amber-400">Drift Check (&gt;15%)</span>
+                    <span className="text-[10px] text-[#6e7681] block mt-0.5">Threshold evaluation</span>
+                  </div>
+                  <div className="p-2 rounded bg-[#0d1117] border border-[#30363d]">
+                    <span className="text-[9px] text-[#8b949e] block font-sans">Step 3</span>
+                    <span className="font-semibold text-[#a371f7]">QMS Non-Conformance</span>
+                    <span className="text-[10px] text-[#6e7681] block mt-0.5">Auto-generate NCR</span>
+                  </div>
+                  <div className="p-2 rounded bg-[#0d1117] border border-[#30363d]">
+                    <span className="text-[9px] text-[#8b949e] block font-sans">Step 4</span>
+                    <span className="font-semibold text-[#3fb950]">AMM Work Order</span>
+                    <span className="text-[10px] text-[#6e7681] block mt-0.5">Preventive maintenance</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Live Editable Text Clause with Collaborator Typing Cursor */}
+              <div className="p-3 rounded-xl bg-[#161b22] border border-[#30363d] space-y-1.5">
+                <span className="text-[10px] font-mono text-[#8b949e] uppercase font-bold block">
+                  Clause 2.3 — Automated Work Order Failover Trigger
+                </span>
+                <p className="text-xs text-[#c9d1d9] leading-relaxed">
+                  Upon receiving machine cycle variance exceeding 15% across 3 consecutive cycles, the system must bypass manual shift supervisor logging and trigger an immediate preventive maintenance order in AMM.
+                  <span className="text-[#a371f7] font-mono font-medium">
+                    {typingSentence.slice(0, liveTypeIndex)}
+                  </span>
+                  <span className="inline-block w-2 h-4 bg-[#a371f7] ml-1 animate-pulse align-middle" />
+                </p>
               </div>
 
               {/* Interactive Acceptance Criteria Checklist */}
-              <div>
-                <div className="flex items-center justify-between mb-1.5">
-                  <h3 className="font-bold text-gray-900 text-xs uppercase tracking-wider">
-                    3.0 INVEST Acceptance Criteria (Interactive)
-                  </h3>
-                  <span className="text-[10px] text-gray-500 font-mono">Click to toggle test state</span>
+              <div className="p-3.5 rounded-xl bg-[#161b22] border border-[#30363d]">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-xs font-bold text-white flex items-center gap-1.5 uppercase font-mono">
+                    <CheckSquare className="w-3.5 h-3.5 text-[#3fb950]" />
+                    INVEST Acceptance Criteria Checklist
+                  </span>
+                  <span className="text-[10px] font-mono text-[#8b949e]">Click item to toggle</span>
                 </div>
 
-                <div className="space-y-1.5 bg-gray-50/80 border border-gray-200 rounded p-2.5">
-                  <label className="flex items-start gap-2 cursor-pointer select-none">
-                    <input
-                      type="checkbox"
-                      checked={checklistState.item1}
-                      onChange={() => toggleCheck('item1')}
-                      className="mt-0.5 rounded border-gray-300 text-blue-600 focus:ring-0"
-                    />
-                    <span className={`text-[11.5px] ${checklistState.item1 ? 'line-through text-gray-400' : 'text-gray-800'}`}>
-                      Telemetry packets ingested via MQTT within &lt; 500ms latency without queue backpressure.
-                    </span>
-                  </label>
-
-                  <label className="flex items-start gap-2 cursor-pointer select-none">
-                    <input
-                      type="checkbox"
-                      checked={checklistState.item2}
-                      onChange={() => toggleCheck('item2')}
-                      className="mt-0.5 rounded border-gray-300 text-blue-600 focus:ring-0"
-                    />
-                    <span className={`text-[11.5px] ${checklistState.item2 ? 'line-through text-gray-400' : 'text-gray-800'}`}>
-                      Auto-generate Non-Conformance Report (NCR) in QMS with pre-populated sensor telemetry logs.
-                    </span>
-                  </label>
-
-                  <label className="flex items-start gap-2 cursor-pointer select-none">
-                    <input
-                      type="checkbox"
-                      checked={checklistState.item3}
-                      onChange={() => toggleCheck('item3')}
-                      className="mt-0.5 rounded border-gray-300 text-blue-600 focus:ring-0"
-                    />
-                    <span className={`text-[11.5px] ${checklistState.item3 ? 'line-through text-gray-400' : 'text-gray-800'}`}>
-                      AMM preventive maintenance ticket status linked bi-directionally to ERP work orders.
-                    </span>
-                  </label>
-
-                  <label className="flex items-start gap-2 cursor-pointer select-none">
-                    <input
-                      type="checkbox"
-                      checked={checklistState.item4}
-                      onChange={() => toggleCheck('item4')}
-                      className="mt-0.5 rounded border-gray-300 text-blue-600 focus:ring-0"
-                    />
-                    <span className={`text-[11.5px] ${checklistState.item4 ? 'line-through text-gray-400' : 'text-gray-800'}`}>
-                      Failover alert sent to Plant Manager if operator acknowledgement is not received in 5 mins.
-                    </span>
-                  </label>
-                </div>
-              </div>
-
-              {/* Realistic Google Docs Floating Comment Box */}
-              <div className="border border-amber-300 bg-amber-50/90 rounded-lg p-3 shadow-md transition-all">
-                <div className="flex items-center justify-between gap-2 mb-1.5">
-                  <div className="flex items-center gap-2">
-                    <div className="w-5 h-5 rounded-full bg-blue-600 text-white font-bold text-[9px] flex items-center justify-center">
-                      SR
-                    </div>
-                    <div>
-                      <span className="font-semibold text-gray-900 text-[11px] block leading-none">
-                        Srinivas R. (VP Operations)
+                <div className="space-y-2">
+                  {[
+                    { key: 'item1', text: 'Telemetry packets ingested via MQTT gateway within < 500ms latency.' },
+                    { key: 'item2', text: 'Auto-generate Non-Conformance Report (NCR) in QMS with sensor log telemetry.' },
+                    { key: 'item3', text: 'Preventive maintenance work order ticket created in AMM in under 1.2s.' },
+                    { key: 'item4', text: 'Supervisor push notification dispatched via Work3Sixty instant alert.' }
+                  ].map((ci) => (
+                    <div
+                      key={ci.key}
+                      onClick={() => toggleCheck(ci.key)}
+                      className={`flex items-start gap-2.5 p-2 rounded-lg cursor-pointer transition-all border ${
+                        checklist[ci.key]
+                          ? 'bg-[#238636]/10 border-[#238636]/30 text-white'
+                          : 'bg-[#0d1117] border-[#30363d] text-[#8b949e] hover:border-[#484f58]'
+                      }`}
+                    >
+                      <div className={`mt-0.5 w-4 h-4 rounded flex items-center justify-center shrink-0 transition-colors ${
+                        checklist[ci.key] ? 'bg-[#238636] text-white' : 'border border-[#484f58]'
+                      }`}>
+                        {checklist[ci.key] && <Check className="w-3 h-3 stroke-[3]" />}
+                      </div>
+                      <span className={`text-xs ${checklist[ci.key] ? 'text-[#f0f6fc]' : 'line-through text-[#6e7681]'}`}>
+                        {ci.text}
                       </span>
-                      <span className="text-[9px] text-gray-500 font-mono">14 minutes ago</span>
                     </div>
+                  ))}
+                </div>
+              </div>
+
+            </motion.div>
+          )}
+
+          {/* TAB 2: INVEST USER STORY */}
+          {activeTab === 'invest' && (
+            <motion.div 
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2 }}
+              className="space-y-4"
+            >
+              {/* User Story Hero Box */}
+              <div className="p-4 rounded-xl bg-gradient-to-br from-[#161b22] to-[#1f242c] border border-[#30363d]">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-xs font-mono font-bold text-[#a371f7] uppercase tracking-wider">
+                    User Story US-204 · Backlog Ready
+                  </span>
+                  <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#3fb950]/20 text-[#3fb950] border border-[#3fb950]/30 font-bold">
+                    INVEST VERIFIED: 100% PASS
+                  </span>
+                </div>
+
+                <div className="space-y-1.5 text-xs sm:text-sm text-[#f0f6fc] font-medium leading-relaxed bg-[#0d1117] p-3 rounded-lg border border-[#30363d]">
+                  <p><span className="text-[#58a6ff] font-bold font-mono">AS A:</span> Shopfloor Plant Operator / Maintenance Lead</p>
+                  <p><span className="text-[#a371f7] font-bold font-mono">I WANT:</span> Machine cycle times to automatically trigger preventive work orders upon anomaly</p>
+                  <p><span className="text-[#3fb950] font-bold font-mono">SO THAT:</span> Downstream rework and unexpected machine downtime are reduced by 40%.</p>
+                </div>
+              </div>
+
+              {/* 6-Point INVEST Radar Badges */}
+              <div className="grid grid-cols-2 sm:grid-cols-6 gap-2 text-center text-xs font-mono">
+                {[
+                  { letter: 'I', word: 'Independent', stat: 'PASS' },
+                  { letter: 'N', word: 'Negotiable', stat: 'PASS' },
+                  { letter: 'V', word: 'Valuable', stat: 'PASS' },
+                  { letter: 'E', word: 'Estimable', stat: 'PASS' },
+                  { letter: 'S', word: 'Small', stat: 'PASS' },
+                  { letter: 'T', word: 'Testable', stat: 'PASS' }
+                ].map((inv) => (
+                  <div key={inv.word} className="p-2 rounded-lg bg-[#161b22] border border-[#238636]/40 shadow-sm">
+                    <span className="text-base font-black text-[#3fb950] block">{inv.letter}</span>
+                    <span className="text-[10px] text-[#c9d1d9] block mt-0.5">{inv.word}</span>
+                    <span className="text-[9px] text-[#3fb950] font-bold font-mono mt-1 block">✓ {inv.stat}</span>
                   </div>
-
-                  <button
-                    onClick={() => setCommentResolved(!commentResolved)}
-                    className={`flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${
-                      commentResolved 
-                        ? 'bg-emerald-100 text-emerald-800 border border-emerald-300' 
-                        : 'bg-white hover:bg-gray-100 text-gray-700 border border-gray-300'
-                    }`}
-                  >
-                    <Check className="w-3 h-3 text-emerald-600" />
-                    <span>{commentResolved ? 'Resolved' : 'Resolve'}</span>
-                  </button>
-                </div>
-
-                <p className="text-[11.5px] text-gray-800 leading-snug">
-                  "Gokulpriya, the INVEST criteria and AMM trigger workflow look solid. Approved for Sprint 14."
-                </p>
-
-                {/* Lead BA Reply */}
-                <div className="mt-2 pl-3 border-l-2 border-purple-400 text-[11px] text-purple-900 bg-purple-50/60 p-1.5 rounded-r">
-                  <span className="font-bold block text-[10px] text-purple-950">Gokulpriya M. (Author):</span>
-                  <span>Updated RTM matrix and tagged QA lead for automation test script creation.</span>
-                </div>
+                ))}
               </div>
 
-            </div>
-          )}
-
-          {/* Document Content Tab 2: User Story & Acceptance */}
-          {activeDocTab === 'userstory' && (
-            <div className="space-y-4">
-              <div className="border border-blue-200 bg-blue-50/50 rounded p-2.5 flex items-center justify-between">
-                <div>
-                  <span className="text-[10px] font-mono uppercase text-blue-700 font-bold">User Story Card</span>
-                  <h3 className="font-bold text-gray-900 text-sm">US-204: Shopfloor MES Telemetry Integration</h3>
-                </div>
-                <span className="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold font-mono">
-                  VERIFIED INVEST PASS
+              {/* Gherkin Acceptance Criteria */}
+              <div className="p-3.5 rounded-xl bg-[#010409] border border-[#30363d] font-mono text-xs space-y-1.5">
+                <span className="text-[10px] text-[#8b949e] uppercase font-bold block mb-1">
+                  Gherkin BDD Syntax (Given-When-Then)
                 </span>
+                <p><span className="text-[#58a6ff] font-bold">GIVEN</span> IoT sensor records machine cycle time drift &gt; 15%</p>
+                <p><span className="text-amber-400 font-bold">WHEN</span> Operator or Edge telemetry submits Non-Conformance in QMS</p>
+                <p><span className="text-[#3fb950] font-bold">THEN</span> Auto-schedule preventive maintenance work order in AMM</p>
+                <p><span className="text-[#a371f7] font-bold">AND</span> Broadcast instant priority alert via Work3Sixty notification queue</p>
               </div>
-
-              {/* Agile User Story Narrative */}
-              <div className="bg-gray-50 border border-gray-200 rounded p-3 text-[12px] space-y-1.5">
-                <p><strong className="text-gray-900">AS A:</strong> Plant Operator / Shift Supervisor</p>
-                <p><strong className="text-gray-900">I WANT:</strong> IoT machine telemetry to automatically trigger maintenance non-conformance records</p>
-                <p><strong className="text-gray-900">SO THAT:</strong> Unscheduled equipment downtime is minimized without requiring manual paper logbook entries.</p>
-              </div>
-
-              {/* INVEST Checklist Scorecard */}
-              <div className="grid grid-cols-3 sm:grid-cols-6 gap-1.5 text-center font-mono text-[10px]">
-                <div className="bg-emerald-50 border border-emerald-200 p-1.5 rounded text-emerald-800">
-                  <span className="font-bold block text-emerald-900">I</span> Independent
-                </div>
-                <div className="bg-emerald-50 border border-emerald-200 p-1.5 rounded text-emerald-800">
-                  <span className="font-bold block text-emerald-900">N</span> Negotiable
-                </div>
-                <div className="bg-emerald-50 border border-emerald-200 p-1.5 rounded text-emerald-800">
-                  <span className="font-bold block text-emerald-900">V</span> Valuable
-                </div>
-                <div className="bg-emerald-50 border border-emerald-200 p-1.5 rounded text-emerald-800">
-                  <span className="font-bold block text-emerald-900">E</span> Estimable
-                </div>
-                <div className="bg-emerald-50 border border-emerald-200 p-1.5 rounded text-emerald-800">
-                  <span className="font-bold block text-emerald-900">S</span> Small
-                </div>
-                <div className="bg-emerald-50 border border-emerald-200 p-1.5 rounded text-emerald-800">
-                  <span className="font-bold block text-emerald-900">T</span> Testable
-                </div>
-              </div>
-
-              {/* Gherkin Scenario */}
-              <div className="border border-purple-200 bg-purple-50/40 rounded p-3 font-mono text-[11px] text-gray-800 leading-relaxed">
-                <span className="text-purple-800 font-bold block mb-1">Scenario: Machine Cycle-Time Variance Exceeds Threshold</span>
-                <p><span className="text-purple-700 font-semibold">GIVEN</span> IoT sensor records cycle time anomaly &gt; 15%</p>
-                <p><span className="text-purple-700 font-semibold">WHEN</span> Operator submits non-conformance ticket in QMS</p>
-                <p><span className="text-purple-700 font-semibold">THEN</span> Auto-trigger preventive maintenance work order in AMM</p>
-                <p><span className="text-purple-700 font-semibold">AND</span> Notify plant supervisor via Work3Sixty instant alert queue</p>
-              </div>
-            </div>
+            </motion.div>
           )}
 
-          {/* Document Content Tab 3: ISO 9001 RTM Matrix */}
-          {activeDocTab === 'rtm' && (
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
+          {/* TAB 3: ISO 9001 RTM TRACEABILITY */}
+          {activeTab === 'rtm' && (
+            <motion.div 
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2 }}
+              className="space-y-3"
+            >
+              <div className="flex items-center justify-between pb-1">
                 <div>
-                  <h3 className="font-bold text-gray-900 text-xs uppercase tracking-wider">
+                  <h4 className="text-xs font-bold text-white uppercase font-mono">
                     Requirement Traceability Matrix (RTM)
-                  </h3>
-                  <p className="text-[10px] text-gray-500">ISO 9001 Clause 8.2 & 8.3 Compliant Bi-directional Trace</p>
+                  </h4>
+                  <span className="text-[11px] text-[#8b949e]">
+                    ISO 9001 Clause 8.2 & 8.3 Bi-Directional Engineering Coverage
+                  </span>
                 </div>
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-100 text-emerald-800 font-bold">
-                  100% Backlog Trace
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#238636]/20 text-[#3fb950] border border-[#238636]/30 font-bold">
+                  100% Backlog Coverage
                 </span>
               </div>
 
               {/* Matrix Table */}
-              <div className="border border-gray-300 rounded overflow-hidden text-[10.5px]">
-                <table className="w-full text-left font-mono">
-                  <thead className="bg-gray-100 text-gray-700 border-b border-gray-300 text-[10px] uppercase">
+              <div className="rounded-xl overflow-hidden border border-[#30363d] bg-[#161b22] text-xs font-mono">
+                <table className="w-full text-left">
+                  <thead className="bg-[#0d1117] text-[#8b949e] text-[10px] uppercase border-b border-[#30363d]">
                     <tr>
-                      <th className="p-1.5">Req ID</th>
-                      <th className="p-1.5">Module</th>
-                      <th className="p-1.5">Story</th>
-                      <th className="p-1.5">UAT Test</th>
-                      <th className="p-1.5 text-right">Sign-off</th>
+                      <th className="p-2.5">Req ID</th>
+                      <th className="p-2.5">Module</th>
+                      <th className="p-2.5">Story ID</th>
+                      <th className="p-2.5">UAT Test Case</th>
+                      <th className="p-2.5 text-right">Sign-Off</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-200 text-gray-800">
-                    <tr className="hover:bg-gray-50">
-                      <td className="p-1.5 font-bold text-blue-700">REQ-MES-01</td>
-                      <td className="p-1.5">Telemetry Ingestion</td>
-                      <td className="p-1.5">US-204</td>
-                      <td className="p-1.5 text-purple-700">TC-MES-104</td>
-                      <td className="p-1.5 text-right text-emerald-600 font-bold">PASS ✓</td>
+                  <tbody className="divide-y divide-[#30363d] text-[11px] text-[#c9d1d9]">
+                    <tr className="hover:bg-[#21262d]/50 transition-colors">
+                      <td className="p-2.5 font-bold text-[#58a6ff]">REQ-MES-01</td>
+                      <td className="p-2.5">Telemetry Ingestion</td>
+                      <td className="p-2.5 text-[#a371f7]">US-204</td>
+                      <td className="p-2.5 text-[#8b949e]">TC-MES-104</td>
+                      <td className="p-2.5 text-right font-bold text-[#3fb950]">PASSED ✓</td>
                     </tr>
-                    <tr className="hover:bg-gray-50">
-                      <td className="p-1.5 font-bold text-blue-700">REQ-WMS-04</td>
-                      <td className="p-1.5">FIFO Bin Alloc</td>
-                      <td className="p-1.5">US-118</td>
-                      <td className="p-1.5 text-purple-700">TC-WMS-089</td>
-                      <td className="p-1.5 text-right text-emerald-600 font-bold">PASS ✓</td>
+                    <tr className="hover:bg-[#21262d]/50 transition-colors">
+                      <td className="p-2.5 font-bold text-[#58a6ff]">REQ-WMS-04</td>
+                      <td className="p-2.5">FIFO Bin Allocation</td>
+                      <td className="p-2.5 text-[#a371f7]">US-118</td>
+                      <td className="p-2.5 text-[#8b949e]">TC-WMS-089</td>
+                      <td className="p-2.5 text-right font-bold text-[#3fb950]">PASSED ✓</td>
                     </tr>
-                    <tr className="hover:bg-gray-50">
-                      <td className="p-1.5 font-bold text-blue-700">REQ-QMS-12</td>
-                      <td className="p-1.5">NCR Defect Log</td>
-                      <td className="p-1.5">US-076</td>
-                      <td className="p-1.5 text-purple-700">TC-QMS-034</td>
-                      <td className="p-1.5 text-right text-emerald-600 font-bold">PASS ✓</td>
+                    <tr className="hover:bg-[#21262d]/50 transition-colors">
+                      <td className="p-2.5 font-bold text-[#58a6ff]">REQ-QMS-12</td>
+                      <td className="p-2.5">NCR Defect Logging</td>
+                      <td className="p-2.5 text-[#a371f7]">US-076</td>
+                      <td className="p-2.5 text-[#8b949e]">TC-QMS-034</td>
+                      <td className="p-2.5 text-right font-bold text-[#3fb950]">PASSED ✓</td>
                     </tr>
-                    <tr className="hover:bg-gray-50">
-                      <td className="p-1.5 font-bold text-blue-700">REQ-AMM-08</td>
-                      <td className="p-1.5">Preventive Work Order</td>
-                      <td className="p-1.5">US-211</td>
-                      <td className="p-1.5 text-purple-700">TC-AMM-052</td>
-                      <td className="p-1.5 text-right text-emerald-600 font-bold">PASS ✓</td>
+                    <tr className="hover:bg-[#21262d]/50 transition-colors">
+                      <td className="p-2.5 font-bold text-[#58a6ff]">REQ-AMM-08</td>
+                      <td className="p-2.5">Preventive Work Order</td>
+                      <td className="p-2.5 text-[#a371f7]">US-211</td>
+                      <td className="p-2.5 text-[#8b949e]">TC-AMM-052</td>
+                      <td className="p-2.5 text-right font-bold text-[#3fb950]">PASSED ✓</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-            </div>
+            </motion.div>
           )}
 
-          {/* Bottom Live Cursor Indicator */}
-          <div className="mt-4 pt-3 border-t border-gray-200 flex items-center justify-between text-[10px] text-gray-500 font-mono">
-            <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-              <span>Document Mode: Live Collaborative Review</span>
-            </span>
-            <span>Page 1 of 4 • 2,410 Words</span>
+          {/* 5. Google Docs Real-time Collaborative Floating Comment */}
+          <div className="p-3 rounded-xl bg-[#1e232b] border border-amber-500/30 shadow-lg">
+            <div className="flex items-center justify-between gap-2 mb-1.5">
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-[#1f6feb] to-[#58a6ff] text-white font-bold text-[10px] flex items-center justify-center shadow">
+                  SR
+                </div>
+                <div>
+                  <span className="font-semibold text-white text-xs block leading-tight">
+                    Srinivas R. (VP Operations)
+                  </span>
+                  <span className="text-[10px] text-[#8b949e] font-mono">10 minutes ago</span>
+                </div>
+              </div>
+
+              <button
+                onClick={() => setCommentResolved(!commentResolved)}
+                className={`flex items-center gap-1 px-2.5 py-1 rounded text-xs font-semibold transition-all ${
+                  commentResolved
+                    ? 'bg-[#238636] text-white shadow-[0_0_10px_rgba(46,160,67,0.4)]'
+                    : 'bg-[#21262d] hover:bg-[#30363d] text-[#c9d1d9] border border-[#30363d]'
+                }`}
+              >
+                <Check className="w-3.5 h-3.5" />
+                <span>{commentResolved ? 'Resolved ✓' : 'Resolve'}</span>
+              </button>
+            </div>
+
+            <p className="text-xs text-[#c9d1d9] leading-relaxed pl-8">
+              "Gokulpriya, brilliant edge-case handling on the AMM failover. Approved for sprint refinement!"
+            </p>
+
+            {/* Author Response Thread */}
+            <div className="mt-2 ml-8 pl-3 border-l-2 border-[#a371f7] text-[11px] text-[#d2a8ff] bg-[#a371f7]/10 p-2 rounded-r-lg">
+              <span className="font-bold text-[#f0f6fc] block text-[10px]">Gokulpriya M. (Author):</span>
+              <span>Updated RTM matrix & tagged QA lead for automation test suite generation.</span>
+            </div>
           </div>
 
         </div>
 
-      </div>
+        {/* 6. Google Docs Bottom Document Status Bar */}
+        <div className="px-4 py-2 bg-[#161b22] border-t border-[#30363d] flex items-center justify-between text-[11px] font-mono text-[#8b949e]">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#3fb950] animate-pulse" />
+            <span className="text-[#3fb950] font-semibold">Live Google Docs Sync Active</span>
+            <span className="hidden sm:inline text-[#484f58]">|</span>
+            <span className="hidden sm:inline text-[#8b949e]">ISO 9001 Clause 8.2 & INVEST Verified</span>
+          </div>
 
-      {/* 6. Google Docs Bottom Status Bar */}
-      <div className="bg-[#161b22] px-4 py-2 border-t border-[#30363d] flex items-center justify-between text-[11px] font-mono text-[#8b949e]">
-        <div className="flex items-center gap-2">
-          <span className="text-[#3fb950] font-semibold flex items-center gap-1">
-            <span className="w-2 h-2 rounded-full bg-[#3fb950]" />
-            Live Sync: Active
-          </span>
-          <span className="hidden sm:inline-block text-[#6e7681]">|</span>
-          <span className="hidden sm:inline-block text-[#c9d1d9]">ISO 9001 Quality Standard Approved</span>
+          <div className="flex items-center gap-3">
+            <span className="text-[#8b949e] hidden sm:inline">Page 1 of 4 • 2,410 Words</span>
+            <span className="bg-[#21262d] px-2 py-0.5 rounded text-[10px] text-white border border-[#30363d] font-semibold">
+              Edit Mode
+            </span>
+          </div>
         </div>
 
-        <div className="flex items-center gap-3">
-          <span className="text-[#a371f7] font-medium hidden sm:inline-block">Gokulpriya M. (Owner)</span>
-          <span className="bg-[#21262d] px-2 py-0.5 rounded text-[10px] text-white border border-[#30363d]">
-            Edit Access
-          </span>
-        </div>
       </div>
 
     </div>
