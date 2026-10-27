@@ -27,7 +27,7 @@ export default function EducationCertifications() {
     {
       title: 'Quality Assurance & Governance Best Practices',
       issuer: 'ISO 9001 Alignment',
-      skills: ['RTM Control', 'UAT Defect Management', '11-Phase Governance', 'Hypercare Protocols'],
+      skills: ['RTM Control', 'UAT Defect Management', '7-Phase Lifecycle Governance', 'Hypercare Protocols'],
       gradient: 'from-emerald-500 to-teal-500'
     }
   ];

@@ -102,17 +102,20 @@ export default function ProjectsShowcase() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 space-y-2">
-          <span className="text-xs font-mono text-[#a371f7] font-bold uppercase tracking-widest">
-            Key Enterprise Implementations
-          </span>
+        <motion.div 
+          initial={{ opacity: 0, y: 45 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center max-w-3xl mx-auto mb-14 space-y-2"
+        >
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             Enterprise <span className="github-purple-gradient">Project Case Studies</span>
           </h2>
-          <p className="text-[#8b949e] text-sm">
+          <p className="text-[#c9d1d9] text-sm sm:text-base">
             High-impact business initiatives delivered with strict Agile governance, measurable ROI, and zero critical production issues.
           </p>
-        </div>
+        </motion.div>
 
         {/* Project Cards Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -121,10 +124,10 @@ export default function ProjectsShowcase() {
             return (
               <motion.div
                 key={proj.title}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.7, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
                 className="gh-card p-6 relative flex flex-col justify-between"
               >
                 <div>

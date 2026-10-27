@@ -108,11 +108,13 @@ export default function ResumeModal({ isOpen, onClose }) {
                     <span>Senior Business Analyst | Aagnia Technologies</span>
                     <span className="text-[#58a6ff]">May 2023 – Present</span>
                   </div>
-                  <ul className="list-disc list-inside space-y-1 text-[#8b949e] mt-1 font-light">
-                    <li>Conducted 50+ stakeholder workshops; reduced clarification cycles by 35% and enabled teams to start sprints 2–3 days earlier.</li>
-                    <li>Designed an ISO 9001-aligned 11-phase project governance framework with 15+ standardized templates; led a 20-member cross-functional team and reduced rework by 40%.</li>
-                    <li>Managed 200+ backlog items across 3 teams; facilitated sprint planning, daily stand-ups, backlog refinement, and retrospectives.</li>
-                    <li>Coordinated UAT and go-live activities across 4+ production releases, achieving 95% defect detection and 98% user adoption by Go-Live +7.</li>
+                  <ul className="list-disc list-inside space-y-1.5 text-[#c9d1d9] mt-2 font-light">
+                    <li><strong className="text-white font-medium">Requirements Engineering:</strong> Conducted 50+ stakeholder workshops and translated business needs into user stories, acceptance criteria, functional requirements, process flows and RTM; reduced requirement clarification cycles by 35% and enabled sprint starts 2–3 days earlier.</li>
+                    <li><strong className="text-white font-medium">Requirements Documentation:</strong> Prepared and maintained requirements artifacts including BRD, FRD, SRS, user stories, acceptance criteria, RTM, process flows and change-request documentation.</li>
+                    <li><strong className="text-white font-medium">Mobile Web & System Modelling:</strong> Gathered requirements for mobile web applications and represented business flows through process flow diagrams, wireframes, UML, use-case, DFD, sequence and system architecture diagrams.</li>
+                    <li><strong className="text-white font-medium">Stakeholder & Delivery Coordination:</strong> Coordinated clients, product owners, developers, QA and end users across concurrent projects to define requirements, manage scope, prioritize work and support delivery.</li>
+                    <li><strong className="text-white font-medium">Governance & Improvement:</strong> Designed an ISO 9001-aligned 7-phase project lifecycle governance framework with 15+ standardized templates; led a 20-member cross-functional team and reduced rework by 40%.</li>
+                    <li><strong className="text-white font-medium">Agile, UAT & Release Support:</strong> Managed 200+ backlog items across 3 teams; facilitated Scrum ceremonies and coordinated UAT/go-live across 4+ releases, with 95% defect detection, zero critical production incidents and 98% user adoption by Go-Live +7.</li>
                   </ul>
                 </div>
 
@@ -166,7 +168,7 @@ export default function ResumeModal({ isOpen, onClose }) {
 
           {/* Footer */}
           <div className="px-5 py-3 bg-[#161b22] border-t border-[#30363d] flex items-center justify-between shrink-0 font-mono">
-            <span className="text-xs text-[#8b949e]">Verified GitHub Portfolio Document</span>
+            <span className="text-xs text-[#8b949e]">Verified Senior BA Portfolio Document</span>
             <button
               onClick={onClose}
               className="btn-gh-primary text-xs py-1.5 px-3"

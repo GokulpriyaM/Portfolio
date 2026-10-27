@@ -51,24 +51,29 @@ body {
   background: #8b949e;
 }
 
-/* GitHub Glowing Text & Hero Gradient */
+/* Glowing High-Contrast Heading Gradients */
 .github-gradient-text {
-  background: linear-gradient(135deg, #a371f7 0%, #58a6ff 50%, #3fb950 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #38bdf8 45%, #4ade80 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.85));
 }
 
 .github-purple-gradient {
-  background: linear-gradient(135deg, #8957e5 0%, #d2a8ff 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #f472b6 45%, #c084fc 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.85));
 }
 
 .github-blue-gradient {
-  background: linear-gradient(135deg, #2f81f7 0%, #79c0ff 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #7dd3fc 45%, #38bdf8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.85));
 }
 
 /* GitHub Signature Cards */

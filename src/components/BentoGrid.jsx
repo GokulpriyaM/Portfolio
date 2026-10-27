@@ -31,26 +31,30 @@ export default function BentoGrid() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 space-y-2">
-          <span className="text-xs font-mono text-[#a371f7] font-bold uppercase tracking-widest">
-            GitHub Bento Grid Architecture
-          </span>
+        <motion.div 
+          initial={{ opacity: 0, y: 45 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center max-w-3xl mx-auto mb-14 space-y-2"
+        >
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             How Gokulpriya Drives <span className="github-gradient-text">Delivery Speed</span>
           </h2>
-          <p className="text-[#8b949e] text-sm">
+          <p className="text-[#c9d1d9] text-sm sm:text-base">
             Interactive breakdown of Agile metrics, sprint pull request acceleration, and ISO governance safeguards.
           </p>
-        </div>
+        </motion.div>
 
         {/* Bento Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
           
           {/* Bento Card 1: GitHub Contribution Heatmap (Col-Span 7) */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 45 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="md:col-span-7 gh-card gh-card-purple p-6 relative flex flex-col justify-between"
           >
             <div>
@@ -103,10 +107,10 @@ export default function BentoGrid() {
 
           {/* Bento Card 2: Pull Request Sprint Kickoff (Col-Span 5) */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 45 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             className="md:col-span-5 gh-card gh-card-blue p-6 relative flex flex-col justify-between"
           >
             <div>
@@ -148,10 +152,10 @@ export default function BentoGrid() {
 
           {/* Bento Card 3: ISO 9001 Compliance Matrix (Col-Span 6) */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 45 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="md:col-span-6 gh-card gh-card-green p-6 relative"
           >
             <div className="flex items-center justify-between mb-4">
@@ -164,7 +168,7 @@ export default function BentoGrid() {
               </span>
             </div>
 
-            <h3 className="text-xl font-bold text-white mb-2">11-Phase Project Governance</h3>
+            <h3 className="text-xl font-bold text-white mb-2">7-Phase Project Lifecycle</h3>
             <p className="text-xs text-[#8b949e] mb-4 font-light">
               Steered a 20-member cross-functional team with 15+ standardized BA templates, eliminating rework and scope drift.
             </p>
@@ -191,10 +195,10 @@ export default function BentoGrid() {
 
           {/* Bento Card 4: UAT Release Quality (Col-Span 6) */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 45 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="md:col-span-6 gh-card p-6 relative flex flex-col justify-between"
           >
             <div>

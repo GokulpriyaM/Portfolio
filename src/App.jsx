@@ -72,7 +72,7 @@ export default function App() {
           </div>
 
           <p className="flex items-center gap-1">
-            Built with GitHub Homepage Aesthetic & <Heart className="w-3.5 h-3.5 text-[#f85149] fill-[#f85149]" />
+            Built with Modern High-Performance Design & <Heart className="w-3.5 h-3.5 text-[#f85149] fill-[#f85149]" />
           </p>
 
           <p className="text-[11px]">

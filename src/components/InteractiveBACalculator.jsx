@@ -27,20 +27,29 @@ export default function InteractiveBACalculator() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 space-y-2">
-          <span className="text-xs font-mono text-[#58a6ff] font-bold uppercase tracking-widest">
-            GitHub Enterprise ROI Calculator
-          </span>
+        <motion.div 
+          initial={{ opacity: 0, y: 45 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center max-w-3xl mx-auto mb-14 space-y-2"
+        >
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             BA Delivery <span className="github-blue-gradient">Cost & Efficiency Estimator</span>
           </h2>
-          <p className="text-[#8b949e] text-sm">
-            Simulate the financial and time-saving impact Gokulpriya brings to engineering teams using her 11-phase governance framework and 35% clarification cycle reduction.
+          <p className="text-[#c9d1d9] text-sm sm:text-base">
+            Simulate the financial and time-saving impact Gokulpriya brings to engineering teams using her 7-phase lifecycle governance framework and 35% clarification cycle reduction.
           </p>
-        </div>
+        </motion.div>
 
         {/* Calculator Main Box */}
-        <div className="gh-card p-8 border-[#30363d] bg-[#161b22] max-w-5xl mx-auto">
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          className="gh-card p-8 border-[#30363d] bg-[#161b22] max-w-5xl mx-auto"
+        >
           <div className="grid lg:grid-cols-12 gap-8 items-center">
             
             {/* Left Controls */}
@@ -165,7 +174,7 @@ export default function InteractiveBACalculator() {
             </div>
 
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>

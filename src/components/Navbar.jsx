@@ -174,8 +174,8 @@ export default function Navbar({ onOpenResume }) {
       badge: 'ISO 9001',
       items: [
         {
-          title: 'ISO 9001 11-Phase Workflow',
-          desc: 'Standardized BA lifecycle from elicitation to closure with zero compliance gaps',
+          title: 'Project Lifecycle Process (P1–P7)',
+          desc: '7-Phase standardized delivery from project initiation to handover & support',
           tag: 'Standard',
           tagColor: 'text-[#58a6ff] bg-[#58a6ff]/10 border-[#58a6ff]/20',
           href: '#governance'
@@ -203,7 +203,7 @@ export default function Navbar({ onOpenResume }) {
         }
       ],
       footerLink: {
-        label: 'Inspect 11-Phase BA Governance Framework',
+        label: 'Inspect 7-Phase Project Lifecycle Process',
         href: '#governance'
       }
     },

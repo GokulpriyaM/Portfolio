@@ -68,7 +68,7 @@ export default function MetricsImpact() {
       prefix: '',
       suffix: '%',
       tag: 'ISO 9001 Governance',
-      desc: 'Formulated 11-phase project governance framework with 15+ templates, significantly reducing sprint rework.',
+      desc: 'Formulated 7-phase project lifecycle governance framework with 15+ templates, significantly reducing sprint rework.',
       icon: ShieldCheck,
       gradient: 'from-pink-500 to-rose-500',
       color: 'text-pink-400'

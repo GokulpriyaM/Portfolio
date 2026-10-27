@@ -49,22 +49,31 @@ export default function ContactSection({ onOpenResume }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 space-y-2">
-          <span className="text-xs font-mono text-[#3fb950] font-bold uppercase tracking-widest">
-            Initiate Collaboration
-          </span>
+        <motion.div 
+          initial={{ opacity: 0, y: 45 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center max-w-3xl mx-auto mb-14 space-y-2"
+        >
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             Connect & <span className="github-gradient-text">Hire Gokulpriya M.</span>
           </h2>
-          <p className="text-[#8b949e] text-sm">
+          <p className="text-[#c9d1d9] text-sm sm:text-base">
             Open to Senior Business Analyst, Product Delivery Lead, and Agile Governance roles (Remote & On-site). Notice period: 30 Days.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid lg:grid-cols-12 gap-8 items-start">
           
           {/* Left Column: Direct Contact Info */}
-          <div className="lg:col-span-5 space-y-6">
+          <motion.div 
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 space-y-6"
+          >
             
             <div className="gh-card p-6 sm:p-7 border-[#30363d] bg-[#161b22] space-y-5">
               <h3 className="text-base font-bold text-white font-mono flex items-center gap-2 border-b border-[#30363d] pb-3">
@@ -167,10 +176,16 @@ export default function ContactSection({ onOpenResume }) {
 
             </div>
 
-          </div>
+          </motion.div>
 
           {/* Right Column: Contact Form */}
-          <div className="lg:col-span-7">
+          <motion.div 
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-7"
+          >
             <div className="gh-card p-6 sm:p-8 border-[#30363d] bg-[#161b22]">
               
               {formSubmitted ? (
@@ -268,7 +283,7 @@ export default function ContactSection({ onOpenResume }) {
               )}
 
             </div>
-          </div>
+          </motion.div>
 
         </div>
 

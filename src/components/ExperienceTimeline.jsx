@@ -21,10 +21,30 @@ export default function ExperienceTimeline() {
       isCurrent: true,
       badgeColor: 'border-[#006d32] text-[#3fb950] bg-[#0e4429]/40',
       highlights: [
-        'Conducted 50+ stakeholder workshops and translated business needs into user stories, acceptance criteria, functional requirements, process flows, and RTM; reduced requirement clarification cycles by 35%.',
-        'Designed an ISO 9001-aligned 11-phase project governance framework with 15+ standardized templates; led a 20-member cross-functional team and reduced rework by 40%.',
-        'Managed 200+ backlog items across 3 engineering teams and facilitated sprint planning, daily stand-ups, backlog refinement, sprint reviews, and retrospectives.',
-        'Coordinated UAT and go-live activities across 4+ production releases, achieving 95% defect detection, zero critical production incidents, and 98% user adoption by Go-Live +7.'
+        {
+          label: 'Requirements Engineering',
+          text: 'Conducted 50+ stakeholder workshops and translated business needs into user stories, acceptance criteria, functional requirements, process flows and RTM; reduced requirement clarification cycles by 35% and enabled sprint starts 2–3 days earlier.'
+        },
+        {
+          label: 'Requirements Documentation',
+          text: 'Prepared and maintained requirements artifacts including BRD, FRD, SRS, user stories, acceptance criteria, RTM, process flows and change-request documentation.'
+        },
+        {
+          label: 'Mobile Web & System Modelling',
+          text: 'Gathered requirements for mobile web applications and represented business flows through process flow diagrams, wireframes, UML, use-case, DFD, sequence and system architecture diagrams.'
+        },
+        {
+          label: 'Stakeholder & Delivery Coordination',
+          text: 'Coordinated clients, product owners, developers, QA and end users across concurrent projects to define requirements, manage scope, prioritize work and support delivery.'
+        },
+        {
+          label: 'Governance & Improvement',
+          text: 'Designed an ISO 9001-aligned 7-phase project lifecycle governance framework with 15+ standardized templates; led a 20-member cross-functional team and reduced rework by 40%.'
+        },
+        {
+          label: 'Agile, UAT & Release Support',
+          text: 'Managed 200+ backlog items across 3 teams; facilitated Scrum ceremonies and coordinated UAT/go-live across 4+ releases, with 95% defect detection, zero critical production incidents and 98% user adoption by Go-Live +7.'
+        }
       ]
     },
     {
@@ -76,27 +96,30 @@ export default function ExperienceTimeline() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 space-y-2">
-          <span className="text-xs font-mono text-[#58a6ff] font-bold uppercase tracking-widest">
-            GitHub Career Timeline
-          </span>
+        <motion.div 
+          initial={{ opacity: 0, y: 45 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center max-w-3xl mx-auto mb-14 space-y-2"
+        >
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             Professional <span className="github-blue-gradient">Work Experience</span>
           </h2>
-          <p className="text-[#8b949e] text-sm">
+          <p className="text-[#c9d1d9] text-sm sm:text-base">
             6+ years of progressive growth across business analysis, project governance, quality engineering, and cross-functional team leadership.
           </p>
-        </div>
+        </motion.div>
 
         {/* Timeline */}
         <div className="max-w-4xl mx-auto relative border-l-2 border-[#30363d] pl-6 sm:pl-10 space-y-10">
           {experiences.map((exp, idx) => (
             <motion.div
               key={exp.company + exp.period}
-              initial={{ opacity: 0, x: -15 }}
+              initial={{ opacity: 0, x: -45 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, delay: idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
               className="relative group"
             >
               {/* Branch Dot Icon */}
@@ -143,13 +166,25 @@ export default function ExperienceTimeline() {
                 </div>
 
                 {/* Bullets */}
-                <div className="space-y-2">
-                  {exp.highlights.map((bullet, bIdx) => (
-                    <div key={bIdx} className="flex items-start gap-2 text-xs sm:text-sm text-[#c9d1d9] leading-relaxed font-light">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#3fb950] shrink-0 mt-0.5" />
-                      <span>{bullet}</span>
-                    </div>
-                  ))}
+                <div className="space-y-2.5">
+                  {exp.highlights.map((bullet, bIdx) => {
+                    const isObj = typeof bullet === 'object' && bullet !== null;
+                    return (
+                      <div key={bIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#c9d1d9] leading-relaxed font-light">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#3fb950] shrink-0 mt-0.5" />
+                        <div>
+                          {isObj ? (
+                            <>
+                              <strong className="text-white font-semibold font-mono">{bullet.label}:</strong>{' '}
+                              <span>{bullet.text}</span>
+                            </>
+                          ) : (
+                            <span>{bullet}</span>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
 
               </div>

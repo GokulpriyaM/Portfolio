@@ -53,7 +53,7 @@ export default function Hero({ onOpenResume }) {
                 Senior Business Analyst & Product Delivery Lead
               </span>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
-                Build business value like GitHub builds{' '}
+                Driving High-Velocity Business Value{' '}
                 <motion.span 
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -104,10 +104,7 @@ export default function Hero({ onOpenResume }) {
                 <span>BA Impact Calculator</span>
               </a>
 
-              <button onClick={onOpenResume} className="btn-gh-secondary">
-                <FileText className="w-4 h-4 text-[#58a6ff]" />
-                <span>View Resume</span>
-              </button>
+
             </div>
 
           </motion.div>

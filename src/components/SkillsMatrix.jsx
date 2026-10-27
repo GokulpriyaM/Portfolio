@@ -44,7 +44,7 @@ export default function SkillsMatrix() {
       { name: 'Fit-Gap Analysis', level: 92, desc: 'Executed Fit-Gap analysis for ERPNext & D365 ERP (20 config items, 8 custom modules).' },
       { name: 'BPMN & UML Diagramming', level: 90, desc: 'Created BPMN activity diagrams, sequence diagrams, and data flow diagrams in Lucidchart/Draw.io.' },
       { name: 'Wireframing & UI Prototyping', level: 88, desc: 'Designed low-fidelity wireframes and user interaction flows for web and desktop products.' },
-      { name: 'ISO 9001 Project Governance', level: 92, desc: 'Designed 11-phase project governance framework with 15+ standardized BA templates.' }
+      { name: 'ISO 9001 Project Governance', level: 92, desc: 'Designed 7-phase project lifecycle governance framework with 15+ standardized BA templates.' }
     ],
     tools: [
       { name: 'Industrial IoT (MES / WMS / QMS / AMM)', level: 92, desc: 'Mapped shopfloor equipment integration, warehouse inventory, and quality inspection workflows.' },
@@ -69,20 +69,29 @@ export default function SkillsMatrix() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 space-y-2">
-          <span className="text-xs font-mono text-[#a371f7] font-bold uppercase tracking-widest">
-            GitHub Topics & Skills Matrix
-          </span>
+        <motion.div 
+          initial={{ opacity: 0, y: 45 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center max-w-3xl mx-auto mb-14 space-y-2"
+        >
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             Core <span className="github-purple-gradient">Capabilities & Tech Stack</span>
           </h2>
-          <p className="text-[#8b949e] text-sm">
+          <p className="text-[#c9d1d9] text-sm sm:text-base">
             Comprehensive skill set refined across 6+ years of end-to-end software product delivery and Agile governance.
           </p>
-        </div>
+        </motion.div>
 
         {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-wrap justify-center gap-2 mb-10"
+        >
           {categories.map((cat) => {
             const isActive = activeTab === cat.id;
             return (
@@ -103,7 +112,7 @@ export default function SkillsMatrix() {
               </button>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* Skill Cards Grid */}
         <AnimatePresence mode="wait">

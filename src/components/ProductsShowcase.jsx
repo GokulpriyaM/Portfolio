@@ -131,20 +131,29 @@ export default function ProductsShowcase() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 space-y-2">
-          <span className="text-xs font-mono text-[#58a6ff] font-bold uppercase tracking-widest">
-            GitHub Repository Matrix
-          </span>
+        <motion.div 
+          initial={{ opacity: 0, y: 45 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center max-w-3xl mx-auto mb-14 space-y-2"
+        >
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             Featured <span className="github-blue-gradient">Product Repositories</span>
           </h2>
-          <p className="text-[#8b949e] text-sm">
+          <p className="text-[#c9d1d9] text-sm sm:text-base">
             Core enterprise software products where Gokulpriya led requirement engineering, process mapping, and implementation governance.
           </p>
-        </div>
+        </motion.div>
 
         {/* Repository Grid Selectors */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        <motion.div 
+          initial={{ opacity: 0, y: 45 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8"
+        >
           {repositories.map((repo, idx) => {
             const isSelected = selectedRepo === idx;
             return (
@@ -187,7 +196,7 @@ export default function ProductsShowcase() {
               </button>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* Selected Repository Detailed Drawer Box */}
         <AnimatePresence mode="wait">
