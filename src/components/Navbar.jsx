@@ -281,9 +281,10 @@ export default function Navbar({ onOpenResume }) {
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${scrolled ? 'bg-[#010409]/95 backdrop-blur-xl border-b border-[#30363d] py-2.5 shadow-2xl' : 'bg-[#010409]/80 backdrop-blur-md py-3.5 border-b border-white/5'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         
-        {/* Left: Brand Identity (GitHub Octocat Removed) */}
+        {/* Left: Brand Identity */}
         <div className="flex items-center gap-6">
-          <a href="#" className="flex items-center gap-2 group text-decoration-none">
+          <a href="#" className="flex items-center gap-3 group text-decoration-none">
+            <img src="/logo.svg" alt="Gokulpriya Logo" className="w-8 h-8 rounded-lg shadow-md group-hover:scale-105 transition-transform" />
             <div>
               <span className="text-white font-bold text-base leading-tight block tracking-tight group-hover:text-[#58a6ff] transition-colors">
                 Gokulpriya M.
